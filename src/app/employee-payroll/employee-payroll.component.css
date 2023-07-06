@@ -1,0 +1,142 @@
+.content {
+    padding: 20px;
+  }
+  
+  .content-block {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .block-header {
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .header h2 {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0;
+  }
+  
+  .body {
+    margin-top: 20px;
+  }
+  
+  .payslip {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .payslip-title {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  .invoice-wrapper {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+  }
+  
+  .payment-info {
+    margin-top: 20px;
+  }
+  
+  .payment-info .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .payment-info span {
+    font-weight: 500;
+    margin-right: 10px;
+  }
+  
+  .payment-info strong {
+    font-weight: 500;
+  }
+  
+  .payment-details {
+    margin-top: 20px;
+  }
+  
+  .payment-details .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .payment-details img {
+    max-height: 50px;
+    margin-bottom: 10px;
+  }
+  
+  .payment-details p {
+    margin: 0;
+  }
+  
+  .payment-details strong {
+    font-weight: 500;
+  }
+  
+  .line-items {
+    margin-top: 20px;
+  }
+  
+  .line-items .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .line-items table {
+    width: 100%;
+  }
+  
+  .line-items table td {
+    border: none;
+    padding: 5px;
+  }
+  
+  .line-items table td strong {
+    font-weight: 500;
+  }
+  
+  .line-items table td .float-end {
+    float: right;
+  }
+  
+  .extra-notes {
+    margin-bottom: 10px;
+  }
+  
+  .col-sm-12 {
+    margin-top: 20px;
+  }
+  
+  .col-sm-12 span {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  
+  .print {
+    margin-top: 20px;
+    text-align: right;
+  }
+  
+  .print a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .print i {
+    margin-right: 5px;
+  }

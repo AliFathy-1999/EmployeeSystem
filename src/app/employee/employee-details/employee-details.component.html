@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <h2>Employee Profile</h2>
+  <hr>
+
+  <div class="row">
+    <div class="col-3">
+      <img [src]="employeeData.pImage" alt="Profile Picture" class="img-fluid rounded-circle">
+    </div>
+
+    <div class="col-9">
+      <h1><strong>Name:</strong> {{ employeeData.firstName }} {{ employeeData.lastName }}</h1>
+      <h1><strong>National ID:</strong> {{ employeeData.nationalId }}</h1>
+      <h1><strong>Date of Birth:</strong> {{ employeeData.DOB.split('T')[0] }}</h1>
+      <h1><strong>Gender:</strong> {{ employeeData.gender }}</h1>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <h1>Academic Qualifications</h1>
+      <h1><strong>College:</strong> {{ employeeData.academicQualifications.college }}</h1>
+      <h1><strong>Degree:</strong> {{ employeeData.academicQualifications.degree }}</h1>
+      <h1><strong>Institution:</strong> {{ employeeData.academicQualifications.institution }}</h1>
+      <h1><strong>Year:</strong> {{ employeeData.academicQualifications.year }}</h1>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col">
+      <h1><strong>Hire Date:</strong> {{ employeeData.hireDate.split('T')[0] }}</h1>
+      <h1><strong>Position:</strong> {{ employeeData.position }}</h1>
+      <h1><strong>Job Type:</strong> {{ employeeData.jobType }}</h1>
+      <h1><strong>Department ID:</strong> {{ employeeData.depId.name }}</h1>
+      <h1><strong>Salary:</strong> {{ employeeData.salary }}</h1>
+    </div>
+
+    <div class="col">
+      <h1><strong>Phone Number:</strong> {{ employeeData.phoneNumber }}</h1>
+      <h1><strong>Address:</strong> {{ employeeData.address }}</h1>
+    </div>
+  </div>
+</div>

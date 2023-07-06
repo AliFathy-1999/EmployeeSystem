@@ -1,0 +1,70 @@
+<div class="addbtn">
+    <!-- <button mat-raised-button class="button-86" style="color: #f0f0f0;" (click)="openDialog()">Add Book</button> -->
+</div>
+
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> Employee Id </th>
+        <td mat-cell *matCellDef="let element"> {{element.employeeId._id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="userrName">
+        <th mat-header-cell *matHeaderCellDef> Employee Name </th>
+        <td mat-cell *matCellDef="let element">{{element.employeeId?.firstName}} {{element.employeeId?.lastName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> Position </th>
+        <td mat-cell *matCellDef="let element">{{element.employeeId?.position}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="grossSalary">
+        <th mat-header-cell *matHeaderCellDef> Gross Salary </th>
+        <td mat-cell *matCellDef="let element"> {{element?.grossSalary}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="deduction">
+        <th mat-header-cell *matHeaderCellDef>Deduction</th>
+        <td mat-cell *matCellDef="let element">{{element?.deduction}}</td>
+      </ng-container>
+
+       <!-- <ng-container matColumnDef="deduction">
+        <th mat-header-cell *matHeaderCellDef>deduction</th>
+        <td mat-cell *matCellDef="let element">{{element.netSalary}}</td>
+       </ng-container> -->
+
+       <ng-container matColumnDef="bonus">
+        <th mat-header-cell *matHeaderCellDef>Bonus</th>
+        <td mat-cell *matCellDef="let element">{{element?.bonus}}</td>
+       </ng-container>
+
+       <ng-container matColumnDef="netSalary">
+        <th mat-header-cell *matHeaderCellDef>Net Salary</th>
+        <td mat-cell *matCellDef="let element">{{element?.netSalary}}</td>
+       </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary"(click)="openEditDialog(element)"><img class="editBg" src="../../assets/edit.png"
+        ></button>
+        <button mat-icon-button color="warn" (click)="deletePayroll(element.employeeId._id)">
+        <img width="100%" src="../../assets/delete.png"></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+    <mat-paginator [pageSizeOptions]="[10]"  [pageSize]="pageSize" [length]="totalCount" (page)="onPageChanged($event)" style="display: none;"></mat-paginator>
+
+    <button mat-icon-button (click)="onPreviousPage()" [disabled]="currentPageIndex === 1" style="margin-right: 1%;">
+      <img src="../../assets/previous.png">
+      </button>Page {{currentPageIndex}}
+       <button mat-icon-button (click)="onNextPage()" [disabled]="currentPageIndex==totalPages">
+        <img src="../../assets/next.png">
+       </button>

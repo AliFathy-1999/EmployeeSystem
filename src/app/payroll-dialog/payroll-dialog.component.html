@@ -1,0 +1,64 @@
+<div class="dialog">
+
+    <div mat-dialog-title>
+      <h3>Payroll Form</h3>
+    </div>
+    <div class="form-wrap">
+
+      <form [formGroup]="payrollForm" (ngSubmit)="submitData(payrollForm)">
+  
+        <div mat-dialog-content>
+  
+          <div class="row">
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>Bonus</mat-label>
+                  <input matInput style="vertical-align: middle;" type="number" class="form-control" formControlName="bonus" name="bonus">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="payrollForm.get('bonus')?.errors != null && payrollForm.get('bonus')?.touched">
+                  <p class="text-danger" *ngIf="payrollForm.get('bonus')?.errors?.['required']">Bonus is required!</p>
+                  <p *ngIf="payrollForm.get('bonus')?.errors?.['max'] !== null && payrollForm.get('bonus')?.errors?.['max'] !== undefined">
+                    Number must be at least {{payrollForm.get('bonus')?.errors?.['max']}}.
+                  </p>
+                  <p *ngIf="payrollForm.get('bonus')?.errors?.['min'] !== null && payrollForm.get('bonus')?.errors?.['min'] !== undefined">
+                    Number must be at least {{payrollForm.get('bonus')?.errors?.['min']}}.
+                  </p>
+                  <div *ngIf="nameMessage" class="alert mt-3 alert-danger text-center" role="alert">{{nameMessage}}</div>
+                  </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>Gross Salary</mat-label>
+                  <input matInput type="number" cols="50" class="form-control" formControlName="grossSalary" name="grossSalary">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="payrollForm.get('grossSalary')?.errors != null && payrollForm.get('grossSalary')?.touched">
+                  <p class="text-danger" *ngIf="payrollForm.get('grossSalary')?.errors?.['required']">grossSalary Salary is required!
+                  </p>
+                  <p *ngIf="payrollForm.get('grossSalary')?.errors?.['max'] !== null && payrollForm.get('grossSalary')?.errors?.['max'] !== undefined">
+                    Number must be at least 3500
+                  </p>
+                  <p *ngIf="payrollForm.get('grossSalary')?.errors?.['min'] !== null && payrollForm.get('grossSalary')?.errors?.['min'] !== undefined">
+                    Number must be at less than 200000
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div mat-dialog-action class="action">
+          <button mat-raised-button class="btn btn-sucess btn-block p-3"
+            type="submit" [disabled]="!payrollForm.valid">Update</button> 
+          <button mat-raised-button class="btn btn-danger btn-block p-3" (click)="closeDialog()"
+     type="button">Cancel</button> 
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  

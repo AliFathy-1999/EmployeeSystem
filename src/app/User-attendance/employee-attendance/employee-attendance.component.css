@@ -1,0 +1,11 @@
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 15rem; /* set a fixed height to the container element */
+}
+
+.container h2{
+  color: rgb(52, 52, 156);
+}
+

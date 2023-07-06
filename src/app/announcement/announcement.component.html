@@ -1,0 +1,72 @@
+
+   
+<div class="checks" *ngIf="currentUser.role=='ADMIN' ">
+    <div class="blog-container" >
+      
+      <div class="blog-header">
+        <div class="blog-author--no-cover">
+            <h3>Russ Beye</h3>
+        </div>
+      </div>
+    
+      <div class="blog-body">
+        
+        <div class="blog-summary">
+            <form class="row validate-form" [formGroup]="newAnnouncement">
+                <label>Your Message</label>
+                <input class="col-12" type="text" class="form-control"formControlName="newMessage" placeholder="Enter your Message" />
+                <label>Message Title</label>
+                <input class="col-12" type="text"class="form-control" formControlName="title" placeholder="Enter Title to your Message" />
+              </form>
+        </div>
+      </div>
+      
+      <div class="blog-footer">
+        <ul>
+          <li class="published-date row"> <button
+            class="btn btn-transparent col-4  sendbutton"
+            [disabled]="!this.newAnnouncement.valid"
+            (click)="sendNewAnnouncement()"
+          >
+            send
+          </button></li>
+        
+        </ul>
+      </div>
+    
+    </div> </div>
+    
+    
+
+
+
+
+    <div class="checks" *ngIf="allAnnouncements">
+    <div class="blog-container" *ngFor="let announcement of allAnnouncements ">
+      
+      <div class="blog-header">
+        <div class="blog-author--no-cover">
+            <h3>Russ Beye</h3>
+        </div>
+      </div>
+    
+      <div class="blog-body">
+        <div class="blog-title">
+          <h1><a href="#">{{announcement.message}}</a></h1>
+        </div>
+        <div class="blog-summary">
+          <p>{{announcement.title}}</p>
+        </div>
+      </div>
+      
+      <div class="blog-footer">
+        <ul>
+          <li class="published-date">{{calculateTime(announcement.createdAt)}} </li>
+          <li class="published-date">At : {{announcement.createdAt | date : "shortTime"}} </li>
+        </ul>
+      </div>
+    
+    </div>
+    
+    </div>
+    

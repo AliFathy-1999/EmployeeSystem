@@ -1,0 +1,101 @@
+<div class="dialog">
+
+    <div mat-dialog-title>
+      <h3>User Updating Vacation Form</h3>
+    </div>
+    <div class="form-wrap">
+      <form [formGroup]="vacationForm" (ngSubmit)="submitData(vacationForm)">
+        <div mat-dialog-content>
+  
+          <div class="row">
+  
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>reason</mat-label>
+                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="reasonForVacation" name="reasonForVacation">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="vacationForm.get('reasonForVacation')?.errors != null && vacationForm.get('reasonForVacation')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('reasonForVacation')?.errors?.['required']">reason is required!</p>
+                </div>
+                <div *ngIf="nameMessage" class="alert mt-3 alert-danger text-center"
+                role="alert">{{nameMessage}}</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>totalDays</mat-label>
+                  <input matInput type="number"  class="form-control" formControlName="totalDays" >
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="vacationForm.get('totalDays')?.errors != null && vacationForm.get('totalDays')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['required']">totalDays is required!
+                  </p>
+                  <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['min']">minmum totalDays 0</p>
+                    <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['max']">maximum totalDays 21</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- <div class="content"> -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label>Choose a From date</mat-label>
+                  <input matInput [matDatepicker]="fromPicker" formControlName="fromDay">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="fromPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #fromPicker></mat-datepicker>
+                </mat-form-field>
+                <div class="catVal alert-danger"
+                  *ngIf="vacationForm.get('fromDay')?.errors != null && vacationForm.get('fromDay')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('fromDay')?.errors?.['required']">From date is required!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+  
+              <div class="form-group">
+                <mat-form-field>
+                  <mat-label>Choose a To date</mat-label>
+                  <input matInput [matDatepicker]="toPicker" formControlName="toDay">
+                  <mat-hint>MM/DD/YYYY</mat-hint>
+                  <mat-datepicker-toggle matIconSuffix [for]="toPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #toPicker></mat-datepicker>
+                </mat-form-field>
+  
+                <div class="dialogVal alert-danger"
+                  *ngIf="vacationForm.get('toDay')?.errors != null && vacationForm.get('toDay')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('toDay')?.errors?.['required']">To date is required!</p>
+                </div>
+              </div>
+            </div>
+            <!-- <div *ngIf="catMessage" class="alert mt-3 alert-danger text-center"
+            role="alert">{{catMessage}}</div> -->
+          </div>
+  
+          <!-- <div class="col-md-12">
+            <div class="form-group">
+  
+              <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+              <input hidden formNameControl="bookImage" name="bookImage" accept="image/*"
+                (change)="onFileSelected($event)" #fileInput type="file" id="bookImage">
+            </div>
+          </div> -->
+          <!-- [disabled]="!vacationForm.valid" -->
+        </div>
+        <div mat-dialog-action class="action">
+          <button mat-raised-button class="btn btn-sucess btn-block p-3"
+            type="submit" >{{data?'Update':'Save'}}</button>
+          <button mat-raised-button class="btn btn-danger btn-block p-3" (click)="closeDialog()"
+            type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

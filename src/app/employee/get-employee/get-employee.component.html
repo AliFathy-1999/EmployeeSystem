@@ -1,0 +1,54 @@
+<div class="container mt-4">
+  <h1 class="text-primary text-center mt-4">All Employees</h1>
+  <div *ngIf="loading; else employeeTable" class="d-flex mt-5 justify-content-center">
+    <mat-spinner></mat-spinner>
+  </div>
+  <ng-template #employeeTable>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Employee Image</th>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Position</th>
+        <th>Job Type</th>
+        <th>Phone Number</th>
+        <th>Department</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees | paginate: { itemsPerPage: limit, currentPage: page, totalItems: totalItems }">
+        <td>{{ employee._id }}</td>
+        <td><img src={{employee.pImage}} alt="" class="w-50 h-50"></td>
+        <td>{{ employee.firstName }} {{ employee.lastName }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.position }}</td>
+        <td>{{ employee.jobType }}</td>
+        <td>{{ employee.phoneNumber }}</td>
+        <td>{{ employee.depId.name }}</td>
+        <td >
+          <div class="d-flex">
+          <button class="btn btn-info me-2" id="viewBtn" (click)="gotoEmpDetails(employee._id)"><fa-icon [icon]="faEye"></fa-icon> View</button>
+          <button class="btn btn-primary me-2" id="updateBtn" (click)="gotoUpdateEmp(employee._id)"><fa-icon [icon]="faSquarePen"></fa-icon> Update</button>
+          <button class="btn btn-danger" id="deleteBtn" (click)="deleteEmployee(employee._id)"><fa-icon [icon]="faTrash"></fa-icon> Delete</button>
+        </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <nav aria-label="Pagination">
+    <ul class="pagination justify-content-center">
+      <li class="page-item">
+        <button class="page-link" (click)="prevPage()">Prev</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="nextPage()">next</button>
+      </li>
+    </ul>
+  </nav>
+</ng-template>
+
+</div>

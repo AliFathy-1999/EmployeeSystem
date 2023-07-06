@@ -1,0 +1,42 @@
+<div class="container  py-5">
+  <h2 class="my-5 text-center"
+  style="font-size: 250%;">
+    Welcome to checking page
+  </h2>
+</div>
+<div class="container-fluid col-12 py-3 mt-6 h-300">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-md-8 col-sm-12 d-flex align-items-center">
+      <div id="form" class="bg-white p-5 p-sm-5 col-12 rounded shadow-lg" style="color: black;">
+        <form [formGroup]="checkForm">
+          <div class="form-group text-center mb-4">
+            <label for="employeeId" class="form-label fw-bold mb-3" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px;">Employee ID</label>
+            <mat-form-field appearance="fill" class="w-100 h-100">
+              <mat-label style="font-size: 20px;">Enter your ID</mat-label>
+              <input matInput formControlName="employeeId" id="employeeId" class="w-100" />
+              <mat-error *ngIf="checkForm.get('employeeId')?.errors?.['required'] && checkForm.get('employeeId')?.touched" class="w-75">
+                Employee ID is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <mat-error *ngIf="checkForm.get('employeeId')?.value && checkForm.get('employeeId')?.value.length < 24" class="w-75">
+            Employee ID is too short
+          </mat-error>
+          <mat-error *ngIf="checkForm.get('employeeId')?.value && checkForm.get('employeeId')?.value.length > 24" class="w-75">
+            Employee ID is too long
+          </mat-error>
+          <mat-error *ngIf="checkForm.get('employeeId')?.value && checkForm.get('employeeId')?.value.length === 24 && checkForm.get('employeeId')?.hasError('pattern')" class="w-75">
+            Employee ID is not correct
+          </mat-error>
+          <div class="button-group d-flex justify-content-between">
+            <button mat-raised-button color="primary" class="me-3" (click)="checkIn()">Check In</button>
+            <button mat-raised-button color="accent" class="me-3" (click)="checkOut()">Check Out</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-8 col-sm-12 d-flex justify-content-center align-items-center">
+      <img src=".\assets\img\Check-in-out.png" alt="Image" class="w-250 " />
+    </div>
+  </div>
+</div>

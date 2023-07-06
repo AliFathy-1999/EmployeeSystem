@@ -1,0 +1,99 @@
+<div class="dialog">
+
+    <div mat-dialog-title>
+      <h3>Admin Adding Vacation Form</h3>
+    </div>
+    <div class="form-wrap">
+      <form [formGroup]="vacationForm" (ngSubmit)="submitData(vacationForm)">
+        <div mat-dialog-content>
+  
+          <div class="row">
+  
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>employeeId</mat-label>
+                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="employeeId" name="employeeId">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="vacationForm.get('employeeId')?.errors != null && vacationForm.get('employeeId')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('employeeId')?.errors?.['required']">employeeId is required!</p>
+                </div>
+                <div *ngIf="nameMessage" class="alert mt-3 alert-danger text-center"
+                role="alert">{{nameMessage}}</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>totalDays</mat-label>
+                  <input matInput type="number"  class="form-control" formControlName="totalDays" >
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="vacationForm.get('totalDays')?.errors != null && vacationForm.get('totalDays')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['required']">totalDays is required!
+                  </p>
+                  <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['min']">minmum totalDays 0</p>
+                    <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['max']">maximum totalDays 21</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- <div class="content"> -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                    <mat-label>Status</mat-label>
+                    <mat-select name="status" formControlName="status" [(value)]="status">
+                      <mat-option value="Accepted">Accept</mat-option>
+                      <mat-option value="Declined">Reject</mat-option>
+
+                    </mat-select>
+                    </mat-form-field>
+                <div class="catVal alert-danger"
+                  *ngIf="vacationForm.get('status')?.errors != null && vacationForm.get('status')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('status')?.errors?.['required']">status is required!
+                  </p>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-6">
+  
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>Author Id</mat-label>
+                  <input matInput type="number" class="form-control" formControlName="authorId">
+                </mat-form-field>
+  
+                <div class="dialogVal alert-danger"
+                  *ngIf="bookForm.get('authorId')?.errors != null && bookForm.get('authorId')?.touched">
+                  <p class="text-danger" *ngIf="bookForm.get('authorId')?.errors?.['required']">Author Id is required!</p>
+                </div>
+              </div>
+            </div> -->
+            <!-- <div *ngIf="catMessage" class="alert mt-3 alert-danger text-center"
+            role="alert">{{catMessage}}</div> -->
+          </div>
+  
+          <!-- <div class="col-md-12">
+            <div class="form-group">
+  
+              <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+              <input hidden formNameControl="bookImage" name="bookImage" accept="image/*"
+                (change)="onFileSelected($event)" #fileInput type="file" id="bookImage">
+            </div>
+          </div> -->
+  
+        </div>
+        <div mat-dialog-action class="action">
+          <button mat-raised-button class="btn btn-sucess btn-block p-3"
+            type="submit">{{data?'Update':'Save'}}</button>
+          <button mat-raised-button class="btn btn-danger btn-block p-3" (click)="closeDialog()"
+            type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>

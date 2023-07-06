@@ -1,0 +1,85 @@
+<div class="wrapper">
+    <div class="container">
+      <div class="left">
+        <div class="top" *ngIf="user.role == 'ADMIN'">ALL EMPLOYEES</div>
+        <div class="top" *ngIf="user.role == 'USER'">YOUR Messages</div>
+  
+        <ul class="people">
+          <div *ngIf="user.role == 'USER'">
+          <li
+            class="person"
+            data-chat="person1"
+          >
+            <img
+              src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg"
+              alt=""
+            />
+  
+            <div class="pt-2 name">Admin</div>
+  
+  
+            
+          </li>
+  </div>
+          <div *ngIf="user.role == 'ADMIN'">
+            <li
+              class="person"
+              data-chat="person1"
+              *ngFor="let employee of Employees"
+              (click)="getsenderMessages(employee)"
+            >
+              <img src="{{ employee.pImage }}" alt="" />
+  
+              <div class="pt-2 name">
+                {{ employee.firstName | uppercase }}
+                {{ employee.lastName | uppercase }}
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div class="right">
+        <div class="chat" *ngIf="EmployeeMessages">
+          <div class="top" *ngIf="user.role == 'ADMIN'">
+            <span
+              >To: <span class="name">{{ EmployeeName | uppercase }}</span></span
+            >
+          </div>
+  
+          <div class="top" *ngIf="user.role == 'USER'">
+            <span
+              >from: <span class="name">ADMIN</span></span
+            >
+          </div>
+  
+          <div
+            [ngClass]="
+              user.role == 'ADMIN' ? 'conversation-start' : 'user'
+            "
+          >
+            <div class="nada ms-2" *ngFor="let message of EmployeeMessages">
+              <div class="bubble you">
+                {{ message.message }}
+                <div class="pt-2 time">
+                  {{ message.createdAt | date : "shortTime" }}
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="write" *ngIf="user.role == 'ADMIN'">
+            <form class="row validate-form" [formGroup]="sentMessage">
+              <input class="col-11" type="text" formControlName="newMessage" />
+              <button
+                class="btn btn-transparent col-1 sendbutton"
+                [disabled]="!this.sentMessage.valid"
+                (click)="sendMessagestoEmp()"
+              >
+                send
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

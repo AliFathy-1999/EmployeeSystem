@@ -1,0 +1,30 @@
+<h1>Sign In</h1>
+<div class="d-flex justify-content-center">
+  <form (ngSubmit)="onSubmit()" [formGroup]="formData" class="w-50">
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input class="form-control" id="username" type="text" formControlName="userName" placeholder="Username">
+    </div>
+    <mat-error *ngIf="formData.get('userName')?.invalid && formData.get('userName')?.touched">
+      Username is required.
+    </mat-error>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input class="form-control" id="password" type="password" formControlName="password" placeholder="Password">
+    </div>
+    <mat-error *ngIf="formData.get('password')?.invalid && formData.get('password')?.touched">
+      Password is required.
+    </mat-error>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+</div>
+<!-- <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+  <label for="first-name">First Name: </label>
+  <input id="first-name" type="text" formControlName="firstName">
+
+  <label for="last-name">Last Name: </label>
+  <input id="last-name" type="text" formControlName="lastName">
+
+</form> -->

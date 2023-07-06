@@ -1,0 +1,44 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.notification {
+    text-decoration: none;
+    padding: 15px 26px;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+  }
+  
+  .notification .badge {
+    padding-left: 5px;
+    padding-top: 7px;
+    position: absolute;
+    top: -5px;
+    right: 1px;
+    border-radius: 51%;
+    background: red;
+    color: white;
+    width: 31px;
+    height: 24px;
+  }
+  
+  .notification span {
+    color :black
+  }
