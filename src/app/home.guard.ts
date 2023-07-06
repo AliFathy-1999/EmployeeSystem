@@ -23,9 +23,9 @@ export class homeGuard implements CanActivate {
   const user=this._auth.currentUser.getValue();
   if(this._auth.currentUser.getValue()!==null){
     if (user.role=="ADMIN") {
-      this._router.navigate(['dashboard'])
+      this._router.navigate(['/dashboard'])
   }else if(user.role=="USER"){
-    this._router.navigate(['me/dash'])
+    this._router.navigate(['/me'])
   }
     return false;
   }else{

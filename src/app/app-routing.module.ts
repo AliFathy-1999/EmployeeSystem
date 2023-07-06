@@ -23,23 +23,22 @@ import { AnnouncementComponent } from './announcement/announcement.component';
 import { EmployeeMessagesComponent } from './employee-messages/employee-messages.component';
 // import { EmployeeVacarionComponent } from './employee-vacation/employee-vacation.component';
 const routes: Routes = [
-// { path: 'signin', component: SigninComponent },
-// { path: 'dashboard', component: DashComponent,},
-// { path: 'addEmployee', component: AddEmployeeComponent},
-{ path: '', component: SigninComponent },
-{ path: 'addVacation', component: AddVacationComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN'] }},
-// { path: 'addVacation', component: AddVacationComponent},
+
+  { path: '', component: SigninComponent },
+  { path: 'addVacation', component: AddVacationComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN'] }},
   { path: 'dashboard', component: DashComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   { path: 'addEmployee', component: AddEmployeeComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   { path: 'getAllEmployees', component: GetEmployeeComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   { path: 'updateEmployee/:id', component: UpdateEmployeeComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   { path: 'employeeDetails/:id', component: EmployeeDetailsComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
-  { path: 'payroll', component: PayrollComponent },
-  { path: 'me/payroll', component: EmployeePayrollComponent },
-
-  {path:'allAttendance',component:AllEmployeeAttendanceComponent},
-  {path:'employeeAttendance',component:EmployeeAttendanceComponent},
-  {path:'checkinCheckout',component:CheckinCheckoutComponent},
+  { path: 'payroll', component: PayrollComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN'] }},
+  { path: 'me/payroll', component: EmployeePayrollComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER'] }},
+  {path:'allAttendance',component:AllEmployeeAttendanceComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+  {path:'employeeAttendance',component:EmployeeAttendanceComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
+  {path:'checkinCheckout',component:CheckinCheckoutComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+  {path:'Messages',component:EmployeeMessagesComponent,canActivate: [AuthGuard]},
+  {path:'Announcements',component:AnnouncementComponent,canActivate: [AuthGuard]},
+  {path:'me',component:EmployeeViewComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
 
 ];
 

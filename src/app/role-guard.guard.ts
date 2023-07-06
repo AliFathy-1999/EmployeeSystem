@@ -23,7 +23,7 @@ constructor(private _auth: GlobalService ,private _router:Router){
       return true;
   }
   else {
-      this._router.navigate(['me/dash']);
+      this._router.navigate(['/']);
       return false;
   }
 }

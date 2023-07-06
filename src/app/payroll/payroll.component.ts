@@ -4,7 +4,7 @@ import { MatPaginator,PageEvent} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { PayrollDialogComponent } from '../payroll-dialog/payroll-dialog.component';
 import { SalaryService } from '../service/salary.service';
-// import { Toast, ToastrService } from 'ngx-toastr';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-payroll',
@@ -24,9 +24,8 @@ export class PayrollComponent implements OnInit , AfterViewInit{
   currentPageIndex = 1;
   totalPages!: number;
 
-  // ,private toastr:ToastrService
 
-constructor(private _dialog:MatDialog, private _salary: SalaryService){
+constructor(private _dialog:MatDialog, private _salary: SalaryService,private toastr:ToastrService){
 
 }
 
@@ -52,7 +51,7 @@ openDialog(){
   next:(res:any)=>{
   if(res){
     this.getAllSalary();
-    // this.toastr.success("Data Deleted Successfully");
+    this.toastr.success("Data Deleted Successfully");
   }  
   }
 })

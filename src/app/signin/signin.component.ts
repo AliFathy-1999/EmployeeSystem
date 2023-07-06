@@ -23,14 +23,13 @@ export class SigninComponent implements OnInit{
 
   onSubmit(){
     this._global.signIn(this.formData.value).subscribe((res:any) =>{
-      // sessionStorage.setItem('token',res.data.token);
       this.toastr.success("Signin successfully")
       this._cookieService.delete('token');
       this._cookieService.set('token', res.data.token);
       this._global.saveCurrentUser();
       const user=this._global.currentUser.getValue();
       if(user.role == 'USER'){
-        this.router.navigate(['/me/','dash'])
+        this.router.navigate(['/me'])
       }else{
         this.router.navigate(['/dashboard/'])
       }
