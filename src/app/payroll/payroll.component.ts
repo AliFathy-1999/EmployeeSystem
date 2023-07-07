@@ -14,7 +14,8 @@ import { Toast, ToastrService } from 'ngx-toastr';
 export class PayrollComponent implements OnInit , AfterViewInit{
 
   salary: any[] = [];
-  displayedColumns: string[] = ['id', 'grossSalary', 'bonus', 'userrName', 'position', 'deduction', 'netSalary', 'action'];
+  displayedColumns: string[] = ['id','userrName',  'position','grossSalary', 'bonus',  'deduction', 'netSalary', 'action'];
+  loading: boolean = true;
 
   dataSource = new MatTableDataSource<any>();
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -37,6 +38,7 @@ getAllSalary(){
     this.totalCount = res.data.totalDocs;
     this.totalPages = res.data.totalPages;
     this.dataSource.paginator = this.paginator;
+    this.loading=false;
   })
 }
 

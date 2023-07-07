@@ -1,8 +1,10 @@
 <div class="addbtn">
     <!-- <button mat-raised-button class="button-86" style="color: #f0f0f0;" (click)="openDialog()">Add Book</button> -->
 </div>
-
-<div class="mat-elevation-z8">
+<div *ngIf="loading;" class="d-flex mt-5 justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="mat-elevation-z8" *ngIf="!loading;">
     <table mat-table [dataSource]="dataSource">
   
       <ng-container matColumnDef="id">
@@ -58,7 +60,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-</div>
+
 
     <mat-paginator [pageSizeOptions]="[10]"  [pageSize]="pageSize" [length]="totalCount" (page)="onPageChanged($event)" style="display: none;"></mat-paginator>
 
@@ -68,3 +70,4 @@
        <button mat-icon-button (click)="onNextPage()" [disabled]="currentPageIndex==totalPages">
         <img src="../../assets/next.png">
        </button>
+       </div>
