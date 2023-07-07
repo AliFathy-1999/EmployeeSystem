@@ -22,7 +22,7 @@ export class EmployeeNavComponent {
   announcements :any ;
   empMessages:any ;
   private breakpointObserver = inject(BreakpointObserver);
-  menuItems = ['me/dash','me/payroll','employeeVacation'];
+  menuItems = ['me','me/payroll','employeeVacation'];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),

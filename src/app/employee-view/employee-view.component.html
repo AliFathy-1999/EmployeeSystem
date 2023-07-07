@@ -1,25 +1,100 @@
 <div class="grid-container">
-    <h1 class="mat-h1">Dashboard</h1>
-    <mat-grid-list cols="2" rowHeight="350px">
-      <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-        <mat-card class="dashboard-card">
+  <!-- <h1 class="mat-h1">Dashboard</h1> -->
+  <mat-grid-list cols="1" rowHeight="570" style="margin-bottom: 5%;"> 
+    <mat-grid-tile >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
+         
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="card-image">
+            <img src="../../assets/cover2.jpg" alt="">
+          </div>
+          <div class="card-text">
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="2" rowHeight="200" style="margin-bottom: 5%;">
+    <mat-grid-tile>
+      <div class="dashboard-scard-container">
+        <mat-card class="dashboard-scard" style="width: 300px;">
           <mat-card-header>
-            <mat-card-title>
-              {{card.title}}
-              <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-                <mat-icon>more_vert</mat-icon>
-              </button>
-              <mat-menu #menu="matMenu" xPosition="before">
-                <button mat-menu-item>Expand</button>
-                <button mat-menu-item>Remove</button>
-              </mat-menu>
+            <mat-card-title class="text-muted">
+              Our Employees
             </mat-card-title>
           </mat-card-header>
-          <mat-card-content class="dashboard-card-content">
-            <div>Card Content Here</div>
+          <mat-card-content class="dashboard-scard-content">
+            <div class="card-image">
+              <!-- <img src="../../assets/cover2.jpg" alt=""> -->
+            </div>
+            <div class="card-text">
+              <h1 style="color: #EF9A53;">{{emp}}</h1>
+            </div>
           </mat-card-content>
         </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+      </div>
+    </mat-grid-tile>
+    
+    <mat-grid-tile>
+      <div class="dashboard-card-scontainer">
+        <mat-card class="dashboard-scard" style="width: 300px; text-align: center;">
+          <mat-card-header>
+            <mat-card-title style="align-content: center;" class="text-muted">
+              Our Departments
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="dashboard-scard-content">
+            <div class="card-image">
+            </div>
+            <div class="card-text">
+              <h1 style="color: #EF9A53;">{{dep}}</h1>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <mat-grid-list cols="1" rowHeight="330" style="margin-bottom: 5%;"> 
+    <mat-grid-tile >
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title style="padding:5% 0%;">
+         <h1 style="text-align: center;" class="text-muted">“We believe that it’s really important to come up with core values that<br> you can commit to. And by commit, we mean that you’re willing<br> to hire and fire based on them. If you’re willing to do that, then<br> you’re well on your way to building a company culture that<br> is in line with the brand you want to build.”</h1>
+         <h3 style="text-align: center; color: #EF9A53;"> – Tony Hsieh, CEO, Zappos</h3>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="card-text">
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div class="parent">
+    <div class="left">
+      <img src="https://img.freepik.com/free-vector/people-connecting-puzzle-online-flat-vector-illustration-employees-communicating-remotely-building-relationship-men-women-working-using-social-media-business-cooperation-concept_74855-25228.jpg?w=740&t=st=1688735485~exp=1688736085~hmac=444ac611bbdcc7a40e744a2883eb59a189b65784d3d3b5041237e04fb7427568" style="height: 70vh;">
+    </div>
+    <div class="right" style="color: #EF9A53;">
+      <h1>Teamwork is the ability to work together toward <br>a common vision. The ability to direct individual<br> accomplishments toward organizational <br>objectives. It is the fuel that allows common <br> people to attain uncommon results.</h1>
+    </div>
   </div>
-  
+  <footer style="background:#eeeded; text-align: center; padding:2%; margin-bottom: 1%;">
+    <p class="cp-text">
+        © Copyright 2023 employeeXpert. All rights reserved.
+    </p>
+</footer>
+

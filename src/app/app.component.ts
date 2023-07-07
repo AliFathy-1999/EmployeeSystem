@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'employeeXpert';
+  constructor( private _cookieService: CookieService, private _router: Router){
+  }
+  isLoggedIn(): boolean {
+    return this._cookieService.check('token');
+  }
 }

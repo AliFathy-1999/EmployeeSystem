@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-
 import jwtDecode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
@@ -22,7 +21,6 @@ export class GlobalService {
   this.saveCurrentUser()
 }
   }
-
 currentUser = new BehaviorSubject<any>(null);
 saveCurrentUser(){
 const userToken= this._cookieService.get('token');
@@ -38,14 +36,21 @@ isLogged(): boolean {
 return this._cookieService.get('token') != null;
 }
 
-
-isLogOut(){
-return this._cookieService.delete('token');
+isLogOut(): void {
+  this._cookieService.delete('token');
+  this._router.navigate(['']);
 }
 
+countDep():Observable<any>{
+  return this.http.get(`${this.local_url}/dep/count/all`);
+}
+
+countEmp():Observable<any>{
+  return this.http.get(`${this.local_url}/count/all`);
+}
 
 getToken(): string | null {
-return this._cookieService.get('token') || null;
+ return this._cookieService.get('token') || null;
 }
 
 

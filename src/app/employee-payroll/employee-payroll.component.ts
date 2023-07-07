@@ -12,12 +12,15 @@ export class EmployeePayrollComponent {
 
   }
   salary: any;
+  loading: boolean = true;
 
   
   getAllSalary(){
     this._salary.getEmployeeSalary().subscribe((res:any)=>{
       this.salary = res.data;
-      console.log(this.salary)
+      this.loading=false;
+
+
     })
   }
   

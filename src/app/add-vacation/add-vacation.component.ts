@@ -13,6 +13,7 @@ import {Vacation} from '../vacation';
 })
 
 export class AddVacationComponent implements OnInit {
+  loading: boolean = true;
   data!: any;
   totalCount!:number
   pageSize:number=10;
@@ -55,6 +56,7 @@ export class AddVacationComponent implements OnInit {
          console.log(res.allVacations);
          console.log("res.allVacations",res.allVacations[0].employeeId.firstName);
          this.dataSource.paginator=this.paginator;
+         this.loading=false;
          })
        }
        
