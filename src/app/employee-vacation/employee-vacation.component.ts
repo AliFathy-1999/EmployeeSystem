@@ -16,6 +16,7 @@ import { FormGroup } from '@angular/forms';
 export class EmployeeVacarionComponent {
   data!: any;
   totalCount!:number
+  loading: boolean = true;
   pageSize:number=10;
   
   ngOnInit(): void {
@@ -66,9 +67,11 @@ export class EmployeeVacarionComponent {
          this.totalPages=res.vacations.totalPages
         //  this.dataSource=new MatTableDataSource(this.vacations);
          this.dataSource.data = res.vacations;
+         this.loading=false;
          console.log(res.vacations);
          console.log("res.allVacations",res.vacations[0].employeeId);
          this.dataSource.paginator=this.paginator;
+
          })
        }
       //  updateData(payrollForm: FormGroup) {

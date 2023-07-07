@@ -39,7 +39,7 @@ const routes: Routes = [
   {path:'Messages',component:EmployeeMessagesComponent,canActivate: [AuthGuard]},
   {path:'Announcements',component:AnnouncementComponent,canActivate: [AuthGuard]},
   {path:'me',component:EmployeeViewComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
-
+  {path:'employeeVacation' , component:EmployeeVacarionComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}}
 ];
 
 @NgModule({
