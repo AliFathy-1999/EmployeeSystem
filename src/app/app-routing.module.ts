@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'payroll', component: PayrollComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN'] }},
   { path: 'me/payroll', component: EmployeePayrollComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER'] }},
   {path:'allAttendance',component:AllEmployeeAttendanceComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
-  {path:'getAllAttendancesOfEmployee',component:EmployeeAttendanceComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
+  {path:'employeeAttendance',component:EmployeeAttendanceComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
   {path:'checkinCheckout',component:CheckinCheckoutComponent, canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   {path:'Messages',component:EmployeeMessagesComponent,canActivate: [AuthGuard]},
   {path:'Announcements',component:AnnouncementComponent,canActivate: [AuthGuard]},
