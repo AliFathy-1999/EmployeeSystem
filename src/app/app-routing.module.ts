@@ -24,7 +24,7 @@ import { EmployeeMessagesComponent } from './employee-messages/employee-messages
 // import { EmployeeVacarionComponent } from './employee-vacation/employee-vacation.component';
 const routes: Routes = [
 
-  { path: '', component: SigninComponent },
+  { path: '', component: SigninComponent,canActivate: [homeGuard]},
   { path: 'addVacation', component: AddVacationComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN'] }},
   { path: 'dashboard', component: DashComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   { path: 'addEmployee', component: AddEmployeeComponent , canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
