@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Attendance } from './employee-attendance.model';
 
@@ -13,9 +13,15 @@ export class AttendanceService {
   constructor(private http: HttpClient) { }
 
   // Define your API endpoints here
-  all(page: number = 1, limit: number = 10): Observable<any> {
-    const url = `${this.apiUrl}/all/?page=${page}&limit=${limit}`;
-    return this.http.get<any>(url);
+  getAllAttendancesOfEmployee(page: number = 1, limit: number = 10): Observable<any> {
+    const token = localStorage.getItem('userToken');
+    console.log(token)
+        const headers = new HttpHeaders({
+          authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        });
+    const url = `${this.apiUrl}/getAllAttendancesOfEmployee/?page=${page}&limit=${limit}`;
+    return this.http.get<any>(url, { headers });
   }
 }
 

@@ -109,7 +109,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSn
     MatProgressSpinnerModule,
     FontAwesomeModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true },CookieService

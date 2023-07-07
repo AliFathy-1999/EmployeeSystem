@@ -15,7 +15,7 @@ export class AllEmployeeAttendanceComponent {
   ngOnInit() {
   const page = 1; // Current page
   const limit = 10; // Number of documents per page
-    this.allAttendanceService.allattendance(page, limit).subscribe(
+    this.allAttendanceService.getAllAttendances(page, limit).subscribe(
     (response) => {
       console.log('response',response);
 
@@ -32,7 +32,7 @@ export class AllEmployeeAttendanceComponent {
 
 
 getAttendance(pageIndex: number = 0, pageSize: number = 5) {
-    this.allAttendanceService.allattendance(pageIndex+ 1, pageSize).subscribe(
+    this.allAttendanceService.getAllAttendances(pageIndex+ 1, pageSize).subscribe(
     (response) => {
       console.log('response',response);
 
