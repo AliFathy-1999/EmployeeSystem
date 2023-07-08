@@ -33,10 +33,10 @@ export class NavComponent {
 
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
-      this.menuItems = ['dashboard','getAllEmployees','alldepartments', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory' , 'leaveReport'];
+      this.menuItems = ['dashboard','getAllEmployees','alldepartments', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory' , 'leaveReport','getAllCasualVacations'];
       
     } else if(this.user && this.user.role == 'USER'){
-      this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance','me/holiday'];
+      this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance','me/holiday','getMyCasualVacations'];
 
       this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
 

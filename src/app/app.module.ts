@@ -60,6 +60,9 @@ import { GetDepartmentsComponent } from './departments/get-departments/get-depar
 import { UpdateDepartmentComponent } from './departments/update-department/update-department.component';
 import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
+import { GetAllCasualVacationsComponent } from './get-all-casual-vacations/get-all-casual-vacations.component';
+import { GetMyCasualVacationsComponent } from './get-my-casual-vacations/get-my-casual-vacations.component';
+import { CasualVacationsComponent } from './casual-vacations/casual-vacations.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +97,10 @@ import { LeaveReportComponent } from './leave-report/leave-report.component';
     GetDepartmentsComponent,
     UpdateDepartmentComponent,
     DepartmentDetailsComponent,
-    LeaveReportComponent
+    LeaveReportComponent,
+    GetAllCasualVacationsComponent,
+    GetMyCasualVacationsComponent,
+    CasualVacationsComponent
   ],
   imports: [
     BrowserModule,

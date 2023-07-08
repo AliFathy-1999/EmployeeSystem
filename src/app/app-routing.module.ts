@@ -29,6 +29,8 @@ import { AddDepartmentComponent } from './departments/add-department/add-departm
 import { UpdateDepartmentComponent } from './departments/update-department/update-department.component';
 import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
 import { LeaveReportComponent } from './leave-report/leave-report.component';
+import { GetAllCasualVacationsComponent } from './get-all-casual-vacations/get-all-casual-vacations.component';
+import { GetMyCasualVacationsComponent } from './get-my-casual-vacations/get-my-casual-vacations.component';
 const routes: Routes = [
 
   { path: '', component: SigninComponent,canActivate: [homeGuard]},
@@ -56,6 +58,8 @@ const routes: Routes = [
   {path: 'updateDepartment/:id', component:UpdateDepartmentComponent},
   {path: 'departmentDetails/:id', component:DepartmentDetailsComponent},
   {path:'leaveReport' , component:LeaveReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+  {path:'getAllCasualVacations',component:GetAllCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+  {path:'getMyCasualVacations',component:GetMyCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}}
 ];
 
 @NgModule({
