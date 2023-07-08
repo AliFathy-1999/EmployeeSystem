@@ -104,7 +104,12 @@ import { PayrollHistoryComponent } from './payroll-history/payroll-history.compo
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      closeButton:true,
+      preventDuplicates:true,
+      progressBar:true,
+    }),
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
