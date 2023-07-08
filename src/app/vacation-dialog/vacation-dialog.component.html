@@ -14,7 +14,7 @@
               <div class="form-group">
                 <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
                   <mat-label>employeeId</mat-label>
-                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="employeeId" name="employeeId">
+                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="employeeId" name="employeeId" >
                 </mat-form-field>
                 <div class="dialogVal alert-danger"
                   *ngIf="vacationForm.get('employeeId')?.errors != null && vacationForm.get('employeeId')?.touched">

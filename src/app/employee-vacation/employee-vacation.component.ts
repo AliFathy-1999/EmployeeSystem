@@ -74,6 +74,9 @@ export class EmployeeVacarionComponent {
          this.dataSource.data = res.vacations;
          this.loading=false;
          console.log(res.vacations);
+         console.log("this.totalCount",res.vacations.totalCount);
+         console.log("this.totalPages",this.totalPages);
+
          console.log("res.allVacations",res.vacations[0].employeeId);
          this.dataSource.paginator=this.paginator;
 
