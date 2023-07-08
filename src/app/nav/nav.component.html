@@ -7,19 +7,19 @@
     <mat-nav-list>
 
       <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item.routeName">
-        <fa-icon [icon]="item.icon" class="text-primary menu-icon"></fa-icon>
+        <fa-icon [icon]="item.icon" class="menu-icon" style="color:#89a7ca;font-size:20px;"></fa-icon>
         {{item.name | titlecase}} </a>
       <a [routerLink]='["/Messages"]' class="notification" (click)='toggleMessageBadgeVisibility()'>
-        <span><fa-icon [icon]="faEnvelope" class="text-primary menu-icon"></fa-icon> MESSAGES</span>
+        <span><fa-icon [icon]="faEnvelope" class=" menu-icon" style="color:#89a7ca;font-size:20px;"></fa-icon> Messages</span>
         <span class="badge" *ngIf="messageNotifications"> New</span>
       </a>
       <p>
         <a [routerLink]='["/Announcements"]' class="notification" (click)='toggleAnnouncementBadgeVisibility()'>
-          <span><fa-icon [icon]="faBullhorn" class="text-primary menu-icon"></fa-icon> ANNOUNCEMENTS</span>
+          <span><fa-icon [icon]="faBullhorn" class=" menu-icon" style="color:#89a7ca;font-size:20px;"></fa-icon> Announcements</span>
           <div class="badge" *ngIf="announcementNotifications" >New</div>
         </a>
     </p>
-      <a  mat-list-item (click)="logout()"><fa-icon [icon]="faSignOutAlt" class="text-primary menu-icon"></fa-icon> Logout</a>
+      <a  mat-list-item (click)="logout()"><fa-icon [icon]="faSignOutAlt" class=" menu-icon" style="color:#89a7ca;font-size:20px;"></fa-icon> Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
