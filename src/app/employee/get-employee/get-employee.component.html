@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-end m-5">
   <button class="btn btn-primary" [routerLink]="['/addEmployee']">
-    Add New Department
+    Add New Employee
   </button>
 </div>
 <div class="m-5">
@@ -22,11 +22,11 @@
       </td>
     </ng-container>
     <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> first name </th>
+      <th mat-header-cell *matHeaderCellDef class="table-header"> First Name </th>
       <td mat-cell *matCellDef="let element"> {{ element.firstName }} </td>
     </ng-container>
     <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> Last name </th>
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Last Name </th>
       <td mat-cell *matCellDef="let element"> {{ element.lastName }} </td>
     </ng-container>
     <ng-container matColumnDef="userName">
@@ -34,11 +34,11 @@
       <td mat-cell *matCellDef="let element"> {{ element.userName  }} </td>
     </ng-container>
     <ng-container matColumnDef="email">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> email  </th>
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Email  </th>
       <td mat-cell *matCellDef="let element"> {{ element.email  }} </td>
     </ng-container>
     <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef class="table-header"> position  </th>
+      <th mat-header-cell *matHeaderCellDef class="table-header"> Position  </th>
       <td mat-cell *matCellDef="let element"> {{ element.position  }} </td>
     </ng-container>
     <ng-container matColumnDef="jobType">
