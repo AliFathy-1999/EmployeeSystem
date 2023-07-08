@@ -77,13 +77,12 @@ export class NavComponent {
   };
 
   checkifNewMessages(){
-console.log("nen")
+
     interval(4000).subscribe(() => {
-      console.log("send")
+   
       this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
 
-        console.log(res.data,this.empMessages)
-      if(res.data._id !== this.empMessages._id){
+      if(res.data[0]._id !== this.empMessages[0]._id){
         this.messageNotifications = true
         console.log("recieved")
         this.empMessages=res.data
@@ -97,8 +96,8 @@ console.log("nen")
     interval(4000).subscribe(() => {
       console.log("send")
       this._Announcements.getLastAnnouncement().subscribe((res:any)=>{
-        console.log(res.data,this.announcements)
-      if(res.data._id !== this.announcements._id){
+   
+      if(res.data[0]._id !== this.announcements[0]._id){
         this.announcementNotifications= true
         console.log("recieved")
         this.announcements=res.data
@@ -106,4 +105,4 @@ console.log("nen")
       });
     });
   }
-}
+}            

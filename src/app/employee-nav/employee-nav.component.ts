@@ -22,7 +22,7 @@ export class EmployeeNavComponent {
   announcements :any ;
   empMessages:any ;
   private breakpointObserver = inject(BreakpointObserver);
-  menuItems = ['me','me/payroll','employeeVacation'];
+  menuItems = ['me','me/payroll','employeeVacation','getMyCasualVacations'];
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
@@ -60,7 +60,7 @@ export class EmployeeNavComponent {
     };
 
     checkifNewMessages(){
-console.log("nen")
+
       interval(4000).subscribe(() => {
         console.log("send")
         this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{

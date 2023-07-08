@@ -37,6 +37,7 @@ export class EmployeeMessagesComponent implements OnInit {
     private formBuilder: FormBuilder,private _user:GlobalService ) {
 
      this.user = this._user.currentUser.getValue();
+     console.log(this.user.role)
 
     if (this.user.role === 'USER') {
       this.getEmpMessages();
