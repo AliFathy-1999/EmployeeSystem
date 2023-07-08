@@ -33,7 +33,7 @@ export class NavComponent {
 
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
-      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory','alldepartments' , 'leaveReport'];
+      this.menuItems = ['dashboard','getAllEmployees','alldepartments', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory' , 'leaveReport'];
     } else if(this.user && this.user.role == 'USER'){
       this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance','me/holiday'];
 
