@@ -12,7 +12,7 @@
 			<p class="val_text text-danger" *ngIf="formData.get('userName')?.errors?.['minlength']">Minimum length is
 				8</p>
 			<input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" id="password"  name="password" formControlName="password"  />
-			<button type="button" id="pass" (click)="togglePassword()" style="height: 40px; background-color:white; margin-bottom:10px; margin-left: 10px; "></button>
+			<button type="button" id="pass" (click)="togglePassword()" style="height: 0px; border: 0px; background-color:transparent; margin-bottom:20px; margin-top: -50px;margin-right: -150px; "></button>
 			<p class="val_text text-danger"
 				*ngIf="formData.get('password')?.touched &&formData.get('password')?.errors?.['required']">Password is
 				required</p>
