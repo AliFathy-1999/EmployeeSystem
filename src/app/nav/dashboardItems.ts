@@ -10,7 +10,7 @@ export const sideBarAdminItems = [
   {
     name:'Dashboard',
     routeName:'dashboard',
-    icon:faTachometerAlt
+    icon:faTachometerAlt,
   },
   {
     name:'Employees',
@@ -28,12 +28,12 @@ export const sideBarAdminItems = [
     icon:faFileInvoiceDollar
   },
   {
-    name:'Add Vacation',
+    name:'Vacation',
     routeName:'addVacation',
     icon:faCalendarPlus
   },
   {
-    name:'Attendance',
+    name:'All Attendance',
     routeName:'allAttendance',
     icon:faClipboardList
   },
@@ -48,7 +48,7 @@ export const sideBarAdminItems = [
     icon:faCalendarDay
   },
   {
-    name:'Attendance of employees',
+    name:'My Attendance',
     routeName:'employeeAttendance',
     icon:faUserCheck
   },
@@ -70,7 +70,7 @@ export const sideBarUserItems = [
     icon:faUser
   },
   {
-    name:'Employees',
+    name:'My Payroll',
     routeName:'me/payroll',
     icon: faFileInvoiceDollar
   },
