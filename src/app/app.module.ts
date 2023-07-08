@@ -37,7 +37,7 @@ import { EmployeeDetailsComponent } from './employee/employee-details/employee-d
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PayrollComponent } from './payroll/payroll.component';
 import { PayrollDialogComponent } from './payroll-dialog/payroll-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule,MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EmployeePayrollComponent } from './employee-payroll/employee-payroll.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CookieService } from 'ngx-cookie-service';
