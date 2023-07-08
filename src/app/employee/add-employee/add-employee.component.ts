@@ -14,6 +14,9 @@ import { faArrowUpFromBracket } from '@fortawesome/free-solid-svg-icons';
 })
 export class AddEmployeeComponent {
   faArrowUpFromBracket=faArrowUpFromBracket
+  dateStatus:Boolean = true
+  minDate: Date;
+  maxDate: Date;
   currentYear = new Date().getFullYear();
   departments:any;
   selectedFile!: File;
@@ -49,6 +52,10 @@ export class AddEmployeeComponent {
 
 constructor(private _global:GlobalService,private toastr:ToastrService,private router:Router){
   this.employeeForm.setValidators(this.confirmPasswordValidator);
+  const currentYear = new Date().getFullYear();
+  this.minDate = new Date(currentYear - 70, 0, 1);
+  this.maxDate = new Date(currentYear + 0, 11, 31);
+
 
   this._global.getSelectedDepartment().subscribe((data:any) =>{
     this.departments = data.data

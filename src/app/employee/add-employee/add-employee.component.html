@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="First name" formControlName="firstName">
+            <input matInput placeholder="First name" formControlName="firstName" minlength="3" maxlength="15">
             <div *ngIf="employeeForm.get('firstName')?.errors != null && employeeForm.get('firstName')?.touched">
               <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
               <mat-error *ngIf="employeeForm.get('firstName')?.hasError('minlength')">First Name must be at least 3 characters</mat-error>
@@ -20,7 +20,7 @@
 
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Last name" formControlName="lastName">
+            <input matInput placeholder="Last name" formControlName="lastName" minlength="3" maxlength="15">
             <div *ngIf="employeeForm.get('lastName')?.errors != null && employeeForm.get('lastName')?.touched">
               <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
               <mat-error *ngIf="employeeForm.get('lastName')?.hasError('minlength')">Last Name must be at least 3 characters</mat-error>
@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Username" formControlName="userName">
+            <input matInput placeholder="Username" formControlName="userName" minlength="3" maxlength="30">
             <div *ngIf="employeeForm.get('userName')?.errors != null && employeeForm.get('userName')?.touched">
               <mat-error *ngIf="employeeForm.get('userName')?.hasError('required')">Username is required</mat-error>
               <mat-error *ngIf="employeeForm.get('userName')?.hasError('minlength')">Username must be at least 3 characters</mat-error>
@@ -55,7 +55,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Password" type="password" formControlName="password">
+            <input matInput placeholder="Password" type="password" formControlName="password" minlength="6" >
             <div *ngIf="employeeForm.get('password')?.errors != null && employeeForm.get('password')?.touched">
               <mat-error *ngIf="employeeForm.get('password')?.hasError('required')">Password is required</mat-error>
               <mat-error *ngIf="employeeForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</mat-error>
@@ -82,10 +82,10 @@
       <div class="row">
           <mat-form-field class="col-6">
             <mat-label>Choose a Date of Birth</mat-label>
-            <input matInput [matDatepicker]="DOB_picker" formControlName="DOB">
+            <input matInput [matDatepicker]="DOB_picker" formControlName="DOB" [min]="minDate" [max]="maxDate">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="DOB_picker"></mat-datepicker-toggle>
-            <mat-datepicker #DOB_picker></mat-datepicker>
+            <mat-datepicker #DOB_picker disabled="false"></mat-datepicker>
             <div *ngIf="employeeForm.get('DOB')?.errors != null && employeeForm.get('DOB')?.touched">
               <mat-error *ngIf="employeeForm.get('DOB')?.hasError('required')">Date of Birth is required</mat-error>
               <mat-error *ngIf="employeeForm.get('DOB')?.hasError('isUnder18')">Employee must be at least 18 years old</mat-error>
@@ -103,7 +103,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="full-width">
-            <input matInput placeholder="Position" formControlName="position">
+            <input matInput placeholder="Position" formControlName="position" minlength="2" maxlength="50">
             <div *ngIf="employeeForm.get('position')?.errors != null && employeeForm.get('position')?.touched">
               <mat-error *ngIf="employeeForm.get('position')?.hasError('required')">Position is required</mat-error>
               <mat-error *ngIf="employeeForm.get('position')?.hasError('minlength')">Position must be at least 2 characters</mat-error>
@@ -115,10 +115,10 @@
 
           <mat-form-field class="col-3">
             <mat-label>Choose a Hire date</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="hireDate">
+            <input  matInput [matDatepicker]="picker" formControlName="hireDate" >
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker #picker disabled="false"></mat-datepicker>
               <div *ngIf="employeeForm.get('hireData')?.errors != null && employeeForm.get('hireData')?.touched">
                 <mat-error *ngIf="employeeForm.get('hireData')?.hasError('required')">Year is required</mat-error>
                 <mat-error *ngIf="employeeForm.get('hireData')?.hasError('min')">Hire Data must be at least 1970</mat-error>
@@ -138,7 +138,7 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput #nationalID placeholder="National ID" formControlName="nationalId">
+            <input matInput #nationalID placeholder="National ID" formControlName="nationalId" maxlength="14">
             <mat-hint align="end">{{nationalID.value.length}} / 14</mat-hint>
             <div *ngIf="employeeForm.get('nationalId')?.errors != null && employeeForm.get('nationalId')?.touched">
               <mat-error *ngIf="employeeForm.get('nationalId')?.hasError('required')">National ID is required</mat-error>
@@ -150,7 +150,7 @@
       <div class="row">
         <div class="col-6">
           <mat-form-field class="full-width">
-            <input matInput #salary min="3500" max="200000" placeholder="Salary" type="number" formControlName="salary">
+            <input matInput #salary  type="number" min="3500" max="200000"  placeholder="Salary" formControlName="salary" >
             <mat-hint align="end">{{salary.value}} / 200000</mat-hint>
             <div *ngIf="employeeForm.get('salary')?.errors != null && employeeForm.get('salary')?.touched">
               <mat-error *ngIf="employeeForm.get('salary')?.hasError('required')">Salary is required</mat-error>
@@ -205,7 +205,7 @@
         </div>
         <div class="col-3">
           <mat-form-field class="full-width">
-          <input matInput type="number" placeholder="Graduation Year" formControlName="year" min="1900" title="Please enter a valid year (e.g., 1999)">
+          <input matInput type="number" placeholder="Graduation Year" formControlName="year" min="1900" [max]="currentYear" title="Please enter a valid year (e.g., 1999)">
           <div *ngIf="employeeForm.get('academicQualifications.year')?.errors != null && employeeForm.get('academicQualifications.year')?.touched">
             <mat-error *ngIf="employeeForm.get('academicQualifications.year')?.hasError('required')">Year is required</mat-error>
             <mat-error *ngIf="employeeForm.get('academicQualifications.year')?.hasError('min')">Graduation Year must be at least 1970</mat-error>
