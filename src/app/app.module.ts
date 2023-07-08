@@ -115,7 +115,8 @@ import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.co
     MatProgressSpinnerModule,
     FontAwesomeModule,
     MatDialogModule,
-    MatTableModule
+    MatTableModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: InterceptorInterceptor, multi: true },CookieService

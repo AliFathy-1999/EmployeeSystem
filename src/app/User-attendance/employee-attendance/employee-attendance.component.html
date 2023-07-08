@@ -53,11 +53,13 @@
                     <div class=" justify-content-center" *ngIf="!isLoading" >
                       <mat-paginator
                       #paginator
-                      [length]="attendances.length"
-                      [pageIndex]="1"
-                      [pageSize]="5"
-                      [pageSizeOptions]="[5, 10, 25, 100]"
+                      [length]="attendances.length * res"
+                      [pageIndex]="page -1"
+                      [pageSize]="limit"
+                      [pageSizeOptions]="[5, 10, 15]"
                       showFirstLastButtons
+                      (page)="onPaginateChange($event)"
+
                     ></mat-paginator>
                       </div>
 </div>
