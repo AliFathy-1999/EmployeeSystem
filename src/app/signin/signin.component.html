@@ -11,14 +11,14 @@
 				required</p>
 			<p class="val_text text-danger" *ngIf="formData.get('userName')?.errors?.['minlength']">Minimum length is
 				8</p>
-
-			<input type="password" placeholder="Password" id="password" name="password" formControlName="password" />
+			<input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" id="password"  name="password" formControlName="password"  />
+			<button type="button" id="pass" (click)="togglePassword()" style="height: 40px; background-color:white; margin-bottom:10px; margin-left: 10px; "></button>
 			<p class="val_text text-danger"
 				*ngIf="formData.get('password')?.touched &&formData.get('password')?.errors?.['required']">Password is
 				required</p>
 			<p class="val_text text-danger" *ngIf="formData.get('password')?.errors?.['minlength']">Minimum length is 8
 			</p>
-			<button class="leftSign" [disabled]="formData.invalid">
+			<button class="leftSign"  [disabled]="formData.invalid">
 				<svg class="icon-arrow after" version="1.1" id="Capa_1"
 					viewBox="0 0 403.8 200.3" style="enable-background:new 0 0 403.8 200.3;">
 					<g>
