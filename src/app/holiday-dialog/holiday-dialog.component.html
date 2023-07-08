@@ -1,0 +1,75 @@
+<div class="dialog">
+
+    <div mat-dialog-title>
+      <h3>Holiday Form</h3>
+    </div>
+    <div class="form-wrap">
+
+      <form [formGroup]="holidayForm" (ngSubmit)="submitData(holidayForm)">
+  
+        <div mat-dialog-content>
+  
+          <div class="row">
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>Holiday Name</mat-label>
+                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="holidayName" name="holidayName">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="holidayForm.get('holidayName')?.errors != null && holidayForm.get('holidayName')?.touched">
+                  <p class="text-danger" *ngIf="holidayForm.get('holidayName')?.errors?.['required']">Holiday Name is required!</p>
+                  <p class="text-danger" *ngIf="holidayForm.get('holidayName')?.errors?.['minlength']">Holiday Name minmum length 3</p>
+
+                  <p class="text-danger" *ngIf="holidayForm.get('holidayName')?.errors?.['maxlength']">Holiday Name maximum length 100</p>
+                  <div *ngIf="nameMessage" class="alert mt-3 alert-danger text-center" role="alert">{{nameMessage}}</div>
+                  </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline">
+                  <mat-label>Holiday Date</mat-label>
+                  <input matInput type="date" class="form-control" formControlName="holidayDate" name="holidayDate">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="holidayForm.get('holidayDate')?.errors != null && holidayForm.get('holidayDate')?.touched">
+                  <p class="text-danger" *ngIf="holidayForm.get('holidayDate')?.errors?.['required']">Holiday Date is required!
+                  </p>
+                  <p class="text-danger" *ngIf="holidayForm?.get('holidayName')?.errors?.['notEmpty'] !== null">Holiday name should not be empty</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+              <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                <mat-label>Number of Days</mat-label>
+                <input matInput style="vertical-align: middle;" type="number" class="form-control" formControlName="noOfDays" name="noOfDays">
+              </mat-form-field>
+              <div class="dialogVal alert-danger"
+                *ngIf="holidayForm.get('noOfDays')?.errors != null && holidayForm.get('noOfDays')?.touched">
+                <p class="text-danger" *ngIf="holidayForm.get('noOfDays')?.errors?.['required']">Number of Days is required!</p>
+                <p *ngIf="holidayForm.get('noOfDays')?.errors?.['min'] !== null && holidayForm.get('noOfDays')?.errors?.['min'] !== undefined">
+                  Number must be at least 1.
+                </p>
+                <div *ngIf="nameMessage" class="alert mt-3 alert-danger text-center" role="alert">{{nameMessage}}</div>
+                </div>              
+          </div>
+</div>
+</div>
+
+        <div mat-dialog-action class="action">
+          <button mat-raised-button class="btn btn-sucess btn-block p-3"
+            type="submit" [disabled]="!holidayForm.valid">{{data?'Update':'Save'}}</button>
+          <button mat-raised-button class="btn btn-danger btn-block p-3" (click)="closeDialog()"
+            type="button">Cancel</button> 
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  

@@ -22,9 +22,9 @@ export class NavComponent {
   constructor(private breakpointObserver: BreakpointObserver, private global: GlobalService, private router: Router) {
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
-      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','employeeAttendance'];
+      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance'];
     } else if(this.user && this.user.role == 'USER'){
-      this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance'];
+      this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance','me/holiday'];
     }
   }
 

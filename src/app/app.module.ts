@@ -50,7 +50,9 @@ import { EmployeeMessagesComponent } from './employee-messages/employee-messages
 import { EmployeeAttendanceComponent } from './User-attendance/employee-attendance/employee-attendance.component';
 import { AllEmployeeAttendanceComponent } from './Admin-attendance/all-employee-attendance/all-employee-attendance.component';
 import { CheckinCheckoutComponent } from './User-attendance/checkin-checkout/checkin-checkout.component'; // Import MatTableModule
-import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSnackBarModule
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HolidayComponent } from './holiday/holiday.component';
+import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.component'; // Import MatSnackBarModule
 
 @NgModule({
   declarations: [
@@ -77,6 +79,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'; // Import MatSn
     EmployeeAttendanceComponent,
     AllEmployeeAttendanceComponent,
     CheckinCheckoutComponent,
+    HolidayComponent,
+    HolidayDialogComponent,
   ],
   imports: [
     BrowserModule,
