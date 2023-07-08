@@ -6,6 +6,7 @@ import { ServiceService } from '../holiday/service.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
 import * as moment from 'moment';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class HolidayDialogComponent {
       };
     }
 
-  constructor(private _holiday : ServiceService, private toastr:ToastrService, private _dialogRef: MatDialogRef<HolidayDialogComponent>,
+  constructor(private _holiday : ServiceService,private snackBar: MatSnackBar, private _dialogRef: MatDialogRef<HolidayDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
 
       this.holidayForm = new FormGroup({
@@ -62,10 +63,14 @@ export class HolidayDialogComponent {
       this._holiday.editHoliday(this.data._id, holidayObj).subscribe({
         next: (res: any) => {
           this._dialogRef.close(true);
+          this.snackBar.open("Data Updated Successfully",'', {
+            duration: 1000,
+          });
         },
         error: (HttpErrorResponse) => {
-          this.toastr.error(HttpErrorResponse.error.message);
-        }
+          this.snackBar.open(HttpErrorResponse.error.message,'', {
+            duration: 1000,
+          });          }
       });
     } else {
       const holidayName = holidayForm.get('holidayName');
@@ -80,10 +85,14 @@ export class HolidayDialogComponent {
         this._holiday.createHoliday(holidayObj).subscribe({
           next: (res: any) => {
             this._dialogRef.close(true);
+            this.snackBar.open("Data Created Successfully",'', {
+              duration: 1000,
+            });
           },
           error: (HttpErrorResponse) => {
-            this.toastr.error(HttpErrorResponse.error.message);
-          }
+            this.snackBar.open(HttpErrorResponse.error.message,'', {
+              duration: 1000,
+            });           }
         });
       }
     }

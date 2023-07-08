@@ -30,6 +30,8 @@ export class NavComponent {
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
       this.menuItems = sideBarAdminItems
+
+
     } else if(this.user && this.user.role == 'USER'){
       this.menuItems = sideBarUserItems;
 

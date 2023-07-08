@@ -4,6 +4,7 @@ import { faUser,faTachometerAlt, faUsers, faBuilding, faFileInvoiceDollar, faCal
       ['dashboard','getAllEmployees','alldepartments', 'payroll', 'addVacation',
       'allAttendance','checkinCheckout','Messages','Announcements','holiday',
        'employeeAttendance' , 'payrollHistory' , 'leaveReport'];
+
 */
 export const sideBarAdminItems = [
   {
