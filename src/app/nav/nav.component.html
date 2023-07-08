@@ -6,6 +6,15 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item"> {{item | titlecase}} </a>
+      <a [routerLink]='["/Messages"]' class="notification" (click)='toggleMessageBadgeVisibility()'>
+        <span>MESSAGES</span>
+        <span class="badge" *ngIf="messageNotifications"> New</span>
+      </a>
+      
+      <a [routerLink]='["/Announcements"]' class="notification" (click)='toggleAnnouncementBadgeVisibility()'>
+        <span>ANNOUNCEMENTS</span>
+        <div class="badge" *ngIf="announcementNotifications" >New</div>
+      </a>
       <a  mat-list-item (click)="logout()">Logout</a>
     </mat-nav-list>
   </mat-sidenav>

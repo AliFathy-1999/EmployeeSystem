@@ -18,3 +18,27 @@
   z-index: 1;
 }
 
+.notification {
+  text-decoration: none;
+  padding: 15px 15px;
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+}
+
+.notification .badge {
+  padding-left: 5px;
+  padding-top: 7px;
+  position: absolute;
+  top: -5px;
+  right: 1px;
+  border-radius: 51%;
+  background: red;
+  color: white;
+  width: 31px;
+  height: 24px;
+}
+
+.notification span {
+  color :black
+}
