@@ -62,7 +62,7 @@ getToken(): string | null {
   // getToken(){
   //   return sessionStorage.getItem('token');
   // }
-  
+
   signIn(obj:any): Observable<any>{
     return this.http.post(`${this.api_url}/signin`,obj);
   }
@@ -75,9 +75,9 @@ getToken(): string | null {
   getSelectedDepartment() {
     return this.http.get(`${this.api_url}/admin-dep/selected-dep`);
   }
-  getEmployees(role:string="USER",page:number,limit:number) {
-    return this.http.get<any[]>(`${this.api_url}/admin-emp?role=${role}&page=${page}&limit=${limit}`);
-  }
+  getAllEmployees(){
+    return this.http.get<any[]>(`${this.api_url}/admin-emp`);
+   }
   updateEmployee(id: any, employee: any): Observable<any> {
     return this.http.put(`${this.api_url}/admin-emp/${id}`, employee);
   }

@@ -16,7 +16,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class SigninComponent implements OnInit{
   formData:FormGroup ;
   errorMessage!: string;
-
+  showPassword:boolean=false;
   ngOnInit(): void {
   
   }
@@ -26,6 +26,10 @@ export class SigninComponent implements OnInit{
       userName:new FormControl('' , [Validators.required]),
       password:new FormControl('' , [Validators.required])
   });
+  }
+
+  togglePassword() {
+    this.showPassword = !this.showPassword;
   }
 
   onSubmit(){

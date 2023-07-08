@@ -59,6 +59,16 @@ button:hover {
 	margin-left: 10px;
 	font-size: 19px;
 }
+input[type="password"] + #pass::after {
+    content: url(../../assets/sleep.png);
+    /* margin-left: 5px; */
+	
+  }
+  
+  input[type=text] + #pass::after {
+    content:url(../../assets/eye-care.png);
+    /* margin-left: 5px; */
+  }
 
 .leftSign svg {
 	position: absolute;
