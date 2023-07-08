@@ -58,11 +58,12 @@ button:hover {
 	position: relative;
 	margin-left: 10px;
 	font-size: 19px;
+	margin-top: 8%;
 }
 input[type="password"] + #pass::after {
     content: url(../../assets/sleep.png);
     /* margin-left: 5px; */
-	
+	border-style: none;
   }
   
   input[type=text] + #pass::after {
