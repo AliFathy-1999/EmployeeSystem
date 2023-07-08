@@ -37,8 +37,22 @@ export class AddVacationComponent implements OnInit {
        })
        }
 
+       openEditDialog(data:any){
+        const dialogRef= this._dialog.open(VacationDialogComponent,{
+        data,
+        });
+        dialogRef.afterClosed().subscribe({
+          next:(val)=>{
+           if(val){
+            this.getAllVacations();
+           }
+          }
+        })
        
- displayedColumns: string[] = ['firstName', 'lastName', 'reasonForVacation','fromDay','toDay','status'];
+       }
+
+       
+ displayedColumns: string[] = ['firstName', 'lastName', 'reasonForVacation','fromDay','toDay','status','action'];
          dataSource = new MatTableDataSource<Vacation>();
          @ViewChild(MatPaginator) paginator!: MatPaginator;
        
@@ -75,6 +89,7 @@ export class AddVacationComponent implements OnInit {
             this.dataSource.paginator = this.paginator;
           });
         }
+        
       }
       
       onPreviousPage() {
@@ -94,10 +109,12 @@ export class AddVacationComponent implements OnInit {
           this.currentPageIndex++;
           this._vacation.getAllVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.allVacations;
-            this.totalCount = result.allVacations.totalDocs;
+            this.totalCount = result.allVacations.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
+          console.log("this.totalCount ",this.totalCount );
+
         }
       }
       
