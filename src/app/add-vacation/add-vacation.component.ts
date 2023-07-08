@@ -63,13 +63,8 @@ export class AddVacationComponent implements OnInit {
         getAllVacations(){
          this._vacation.getAllVacations(this.currentPageIndex, this.pageSize).subscribe((res:any)=>{
         //  this.vacations=res.allVacations;
-         console.log(res)
-         console.log(res.paginationInfo.totalCount)
-         console.log(res.paginationInfo.totalPages)
-
          this.totalCount=res.paginationInfo.totalCount
          this.totalPages=res.paginationInfo.totalPages
-
         //  this.dataSource=new MatTableDataSource(this.vacations);
          this.dataSource.data = res.allVacations;
          console.log(res.allVacations);
