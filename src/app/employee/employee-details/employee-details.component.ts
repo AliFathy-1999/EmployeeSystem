@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { GlobalService } from 'src/app/service/global.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-employee-details',
   templateUrl: './employee-details.component.html',
@@ -33,12 +33,15 @@ export class EmployeeDetailsComponent implements OnInit{
   };
   userRole:any;
   isAdmin:boolean = false;
-  constructor(private _global:GlobalService,public route:ActivatedRoute){
+  constructor(private _global:GlobalService,public route:ActivatedRoute,private location: Location){
     this.empId = this.route.snapshot.params['id'];
     this.userRole = this._global.currentUser["_value"].role
     if(this.userRole == "ADMIN"){
       this.isAdmin = true;
     }
+  }
+  goBack(): void {
+    this.location.back();
   }
   ngOnInit(): void {
     this._global.getEmployeeDetails(this.empId).subscribe((data:any) => {
