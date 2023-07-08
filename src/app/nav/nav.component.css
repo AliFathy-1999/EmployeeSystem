@@ -42,3 +42,7 @@
 .notification span {
   color :black
 }
+.menu-icon {
+  margin-right: 0.5rem;
+  font-size: 1.2rem;
+}
