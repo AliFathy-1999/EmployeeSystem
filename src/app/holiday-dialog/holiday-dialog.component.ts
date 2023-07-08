@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 import { ServiceService } from '../holiday/service.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { AbstractControl, ValidatorFn } from '@angular/forms';
+import * as moment from 'moment';
 
 
 @Component({
@@ -41,37 +42,53 @@ export class HolidayDialogComponent {
         noOfDays: new FormControl(null, [Validators.required, Validators.min(1)]),
       });
 
+
+      // if (this.data) {
+      //   this.holidayForm.controls['holidayName'].setValue(this.data.holidayName);
+      //   this.holidayForm.controls['holidayDate'].setValue(moment(this.data.holidayDate).format('YYYY-MM-DD'));
+      //   this.holidayForm.controls['noOfDays'].setValue(this.data.noOfDays);
+      // }
   }
+
 
 
   submitData(holidayForm: FormGroup) {
     if (this.data) {
-   const holidayObj={
-    holidayName: holidayForm.get('holidayName')?.value ? holidayForm.get('holidayName')?.value : this.oldData.holidayName,
-    holidayDate:holidayForm.get('holidayDate')?.value ? holidayForm.get('holidayDate')?.value : this.oldData.holidayDate,
-    noOfDays:holidayForm.get('noOfDays')?.value ? holidayForm.get('noOfDays')?.value : this.oldData.noOfDays
-}    
-  this._holiday.editHoliday(this.data._id, holidayObj).subscribe({
-        next:(res: any) => {
+      const holidayObj = {
+        holidayName: holidayForm.get('holidayName')?.value ? holidayForm.get('holidayName')?.value : this.oldData.holidayName,
+        holidayDate: holidayForm.get('holidayDate')?.value ? moment.utc(holidayForm.get('holidayDate')?.value).local().add(moment().utcOffset(), 'minutes').format() : this.oldData.holidayDate,
+        noOfDays: holidayForm.get('noOfDays')?.value != null ? holidayForm.get('noOfDays')?.value : this.oldData.noOfDays
+      };
+      this._holiday.editHoliday(this.data._id, holidayObj).subscribe({
+        next: (res: any) => {
           this._dialogRef.close(true);
         },
         error: (HttpErrorResponse) => {
           this.toastr.error(HttpErrorResponse.error.message);
         }
-    });
-    }else{
-      this._holiday.createHoliday(this.holidayForm.value).subscribe({next:(res: any)=> {
-          this._dialogRef.close(true);
-        },error: (HttpErrorResponse) => {
-          this.toastr.error(HttpErrorResponse.error.message);
-        }
-        
       });
-    
+    } else {
+      const holidayName = holidayForm.get('holidayName');
+      const holidayDate = holidayForm.get('holidayDate');
+      const noOfDays = holidayForm.get('noOfDays');
+      if(holidayName && holidayDate && noOfDays){
+        const holidayObj = {
+          holidayName: holidayName.value,
+          holidayDate: holidayForm.get('holidayDate')?.value ? moment.utc(holidayForm.get('holidayDate')?.value).local().add(moment().utcOffset(), 'minutes').format() : this.oldData.holidayDate,
+          noOfDays: noOfDays?.value != null ? noOfDays?.value: 0
+        };
+        this._holiday.createHoliday(holidayObj).subscribe({
+          next: (res: any) => {
+            this._dialogRef.close(true);
+          },
+          error: (HttpErrorResponse) => {
+            this.toastr.error(HttpErrorResponse.error.message);
+          }
+        });
+      }
     }
-    
   }
-
+  
   ngOnInit(): void {
     this.holidayForm.patchValue(this.data);
   }

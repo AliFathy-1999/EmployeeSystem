@@ -52,7 +52,8 @@ import { AllEmployeeAttendanceComponent } from './Admin-attendance/all-employee-
 import { CheckinCheckoutComponent } from './User-attendance/checkin-checkout/checkin-checkout.component'; // Import MatTableModule
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HolidayComponent } from './holiday/holiday.component';
-import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.component'; // Import MatSnackBarModule
+import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.component';
+import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.component'; // Import MatSnackBarModule
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.componen
     CheckinCheckoutComponent,
     HolidayComponent,
     HolidayDialogComponent,
+    EmployeeHolidayComponent,
   ],
   imports: [
     BrowserModule,

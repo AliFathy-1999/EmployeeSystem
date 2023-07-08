@@ -3,18 +3,18 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator,PageEvent} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Toast, ToastrService } from 'ngx-toastr';
-import { ServiceService } from './service.service';
+import { ServiceService } from '../holiday/service.service';
 import { HolidayDialogComponent } from '../holiday-dialog/holiday-dialog.component';
 
 @Component({
-  selector: 'app-holiday',
-  templateUrl: './holiday.component.html',
-  styleUrls: ['./holiday.component.css']
+  selector: 'app-employee-holiday',
+  templateUrl: './employee-holiday.component.html',
+  styleUrls: ['./employee-holiday.component.css']
 })
-export class HolidayComponent implements OnInit , AfterViewInit{
+export class EmployeeHolidayComponent implements OnInit , AfterViewInit{
 
   holiday: any[] = [];
-  displayedColumns: string[] = ['_id','holidayName', 'holidayDate','noOfDays' , 'action'];
+  displayedColumns: string[] = ['holidayName', 'holidayDate','noOfDays'];
   loading: boolean = true;
 
   dataSource = new MatTableDataSource<any>();
@@ -46,30 +46,13 @@ ngOnInit(): void {
 }
 
 
-openDialog(){
- const dialogRef= this._dialog.open(HolidayDialogComponent);
- dialogRef.afterClosed().subscribe({
-  next:(res:any)=>{
-  if(res){
-    this.getAllHoliday();
-    this.toastr.success("Data Deleted Successfully");
-  }  
-  }
-})
-}
-
 
 ngAfterViewInit() {
   this.dataSource.paginator = this.paginator;
 }
 
 
-deletePayroll(id:number){
-  this._holiday.deleteHolidayyById(id).subscribe((res:any)=>{
-    this.getAllHoliday();
-  })
-  }
-  
+
   onPageChanged(event: PageEvent) {
     const newPageIndex = event.pageIndex;
     const newPageSize = event.pageSize;
@@ -107,17 +90,6 @@ deletePayroll(id:number){
         this.dataSource.paginator = this.paginator;
       });
     }
-  }
-  
-  openEditDialog(data:any){
-    const dialogRef=this._dialog.open(HolidayDialogComponent,{
-      data
-     })
-    dialogRef.afterClosed().subscribe((res:any)=>{
-      if(res){
-        this.getAllHoliday();
-      }
-     })
   }
 
 }

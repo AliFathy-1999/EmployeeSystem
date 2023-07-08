@@ -28,10 +28,16 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <mat-form-field appearance="outline">
+                <!-- <mat-form-field appearance="outline">
                   <mat-label>Holiday Date</mat-label>
                   <input matInput type="date" class="form-control" formControlName="holidayDate" name="holidayDate">
-                </mat-form-field>
+                </mat-form-field> -->
+                
+                <mat-form-field appearance="outline">
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="holidayDate">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
                 <div class="dialogVal alert-danger"
                   *ngIf="holidayForm.get('holidayDate')?.errors != null && holidayForm.get('holidayDate')?.touched">
                   <p class="text-danger" *ngIf="holidayForm.get('holidayDate')?.errors?.['required']">Holiday Date is required!
