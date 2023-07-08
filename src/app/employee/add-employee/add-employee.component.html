@@ -1,209 +1,273 @@
+<form [formGroup]="employeeForm" novalidate
+(ngSubmit)="onSubmit(employeeForm)" enctype="multipart/form-data" class="container">
+  <mat-card class="employee-card">
+    <mat-card-header>
+      <mat-card-title class="mb-5">Employee Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="First name" formControlName="firstName">
+            <div *ngIf="employeeForm.get('firstName')?.errors != null && employeeForm.get('firstName')?.touched">
+              <mat-error *ngIf="employeeForm.get('firstName')?.hasError('required')">First Name is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('firstName')?.hasError('minlength')">First Name must be at least 3 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('firstName')?.hasError('maxlength')">First Name must be less than 15 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('firstName')?.hasError('pattern')">First Name must contain only alphabetic characters</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
 
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="container card mt-5">
-  <h1 class="text-primary text-center mt-4">Employee Form</h1>
-  <div class="">
-    <h2>First Name</h2>
-    <input class="form-control" formControlName="firstName" >
-    <div *ngIf="employeeForm.get('firstName')?.errors != null && employeeForm.get('firstName')?.touched">
-      <mat-error *ngIf="employeeForm.get('firstName').hasError('required')">First Name is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('firstName').hasError('minlength')">First Name must be at least 3 characters</mat-error>
-      <mat-error *ngIf="employeeForm.get('firstName').hasError('maxlength')">First Name must be less than 15 characters</mat-error>
-      <mat-error *ngIf="employeeForm.get('firstName').hasError('pattern')">First Name must contain only alphabetic characters</mat-error>
-    </div>
-
-  </div>
-
-  <div appearance="fill">
-    <h2>Last Name</h2>
-    <input class="form-control" formControlName="lastName">
-    <div *ngIf="employeeForm.get('lastName')?.errors != null && employeeForm.get('lastName')?.touched">
-      <mat-error *ngIf="employeeForm.get('lastName').hasError('required')">Last Name is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('lastName').hasError('minlength')">Last Name must be at least 3 characters</mat-error>
-      <mat-error *ngIf="employeeForm.get('lastName').hasError('maxlength')">Last Name must be less than 15 characters</mat-error>
-      <mat-error *ngIf="employeeForm.get('lastName').hasError('pattern')">Last Name must contain only alphabetic characters</mat-error>
-    </div>
-  </div>
-
-  <div appearance="fill">
-    <h2>Username</h2>
-    <input class="form-control" formControlName="userName">
-    <div *ngIf="employeeForm.get('userName')?.errors != null && employeeForm.get('userName')?.touched">
-      <mat-error *ngIf="employeeForm.get('userName').hasError('required')">Username is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('userName').hasError('minlength')">Username must be at least 3 characters</mat-error>
-      <mat-error *ngIf="employeeForm.get('userName').hasError('maxlength')">Username must be less than 30 characters</mat-error>
-    </div>
-  </div>
-
-  <div>
-    <h2>Email</h2>
-    <input type="email" class="form-control" formControlName="email">
-    <div *ngIf="employeeForm.get('email')?.errors != null && employeeForm.get('email')?.touched">
-      <mat-error *ngIf="employeeForm.get('email').hasError('required')">Email is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('email').hasError('email')">Invalid email format</mat-error>
-    </div>
-  </div>
-
-
-  <div appearance="fill">
-    <h2>Password</h2>
-    <input class="form-control" formControlName="password" [type]="hidePassword ? 'password' : 'text'">
-    <div *ngIf="employeeForm.get('password')?.errors != null && employeeForm.get('password')?.touched">
-      <mat-error *ngIf="employeeForm.get('password').hasError('required')">Password is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('password').hasError('minlength')">Password must be at least 6 characters</mat-error>
-      <mat-error *ngIf="employeeForm.get('password').hasError('pattern')">Password must contain at least one number, one capital letter, and one special character</mat-error>
-    </div>
-  </div>
-
-  <div appearance="fill">
-    <h2>National ID</h2>
-    <input class="form-control" formControlName="nationalId">
-    <div *ngIf="employeeForm.get('nationalId')?.errors != null && employeeForm.get('nationalId')?.touched">
-      <mat-error *ngIf="employeeForm.get('nationalId').hasError('required')">National ID is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('nationalId').hasError('pattern')">Invalid Egyptian national ID number</mat-error>
-  </div>
-  </div>
-
-  <div appearance="fill">
-    <h2>Date of Birth</h2>
-      <input matInput type="date" class="form-control" formControlName="DOB">
-    <div *ngIf="employeeForm.get('DOB')?.errors != null && employeeForm.get('DOB')?.touched">
-      <mat-error *ngIf="employeeForm.get('DOB').hasError('required')">Date of Birth is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('DOB').hasError('isUnder18')">Employee must be at least 18 years old</mat-error>
-    </div>
-  </div>
-
-  <div appearance="fill">
-    <h2>Gender</h2>
-    <mat-radio-group formControlName="gender">
-      <mat-radio-button value="male">Male</mat-radio-button>
-      <mat-radio-button value="female">Female</mat-radio-button>
-    </mat-radio-group>
-    <div *ngIf="employeeForm.get('gender')?.errors != null && employeeForm.get('gender')?.touched">
-      <mat-error *ngIf="employeeForm.get('gender').hasError('required')">Gender is required</mat-error>
-    </div>
-  </div>
-
-  <div formGroupName="academicQualifications">
-    <h2>Academic Qualifications - College</h2>
-    <div appearance="fill">
-      <input class="form-control" formControlName="college" type="text">
-      <div *ngIf="employeeForm.get('academicQualifications.college')?.errors != null && employeeForm.get('academicQualifications.college')?.touched">
-        <mat-error *ngIf="employeeForm.get('academicQualifications.college').hasError('required')">College name is required</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.college').hasError('minlength')">College name must be at least 2 characters</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.college').hasError('maxlength')">College name must be less than 60 characters</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.college').hasError('pattern')">College name cannot contain numbers</mat-error>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Last name" formControlName="lastName">
+            <div *ngIf="employeeForm.get('lastName')?.errors != null && employeeForm.get('lastName')?.touched">
+              <mat-error *ngIf="employeeForm.get('lastName')?.hasError('required')">Last Name is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('lastName')?.hasError('minlength')">Last Name must be at least 3 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('lastName')?.hasError('maxlength')">Last Name must be less than 15 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('lastName')?.hasError('pattern')">Last Name must contain only alphabetic characters</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Username" formControlName="userName">
+            <div *ngIf="employeeForm.get('userName')?.errors != null && employeeForm.get('userName')?.touched">
+              <mat-error *ngIf="employeeForm.get('userName')?.hasError('required')">Username is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('userName')?.hasError('minlength')">Username must be at least 3 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('userName')?.hasError('maxlength')">Username must be less than 30 characters</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
 
-    <div appearance="fill">
-      <h2>Academic Qualifications - Degree</h2>
-      <mat-select class="form-control" formControlName="degree" placeholder="Please Select a degree">
-        <mat-option value="bachelor">Bachelor</mat-option>
-        <mat-option value="master">Master</mat-option>
-        <mat-option value="doctoral">Doctoral</mat-option>
-        <mat-option value="phd">PhD</mat-option>
-      </mat-select>
-      <div *ngIf="employeeForm.get('academicQualifications.degree')?.errors != null && employeeForm.get('academicQualifications.degree')?.touched">
-        <mat-error *ngIf="employeeForm.get('academicQualifications.degree').hasError('required')">Degree is required</mat-error>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Email" formControlName="email" type="email">
+            <div *ngIf="employeeForm.get('email')?.errors != null && employeeForm.get('email')?.touched">
+              <mat-error *ngIf="employeeForm.get('email')?.hasError('required')">Email is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('email')?.hasError('email')">Invalid email format</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-
-    <div appearance="fill">
-      <h2>Academic Qualifications - Institution</h2>
-      <input class="form-control" formControlName="institution" type="text">
-      <div *ngIf="employeeForm.get('academicQualifications.institution')?.errors != null && employeeForm.get('academicQualifications.institution')?.touched">
-        <mat-error *ngIf="employeeForm.get('academicQualifications.institution').hasError('required')">Institution is required</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.institution').hasError('minlength')">Institution must be at least 2 characters</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.institution').hasError('maxlength')">Institution must be less than 50 characters</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.institution').hasError('pattern')">Institution cannot contain numbers</mat-error>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Password" type="password" formControlName="password">
+            <div *ngIf="employeeForm.get('password')?.errors != null && employeeForm.get('password')?.touched">
+              <mat-error *ngIf="employeeForm.get('password')?.hasError('required')">Password is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('password')?.hasError('pattern')">Password must contain at least one number, one capital letter, and one special character</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-
-    <div appearance="fill">
-      <h2>Academic Qualifications - Year</h2>
-      <input class="form-control" type="number" formControlName="year" min="1900" max={{currentYear}} step="1" title="Please enter a valid year (e.g., 1999)">
-      <div *ngIf="employeeForm.get('academicQualifications.year')?.errors != null && employeeForm.get('academicQualifications.year')?.touched">
-        <mat-error *ngIf="employeeForm.get('academicQualifications.year').hasError('required')">Year is required</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.year').hasError('min')">Graduation Year must be at least 1970</mat-error>
-        <mat-error *ngIf="employeeForm.get('academicQualifications.year').hasError('max')">Graduation Year must be a valid past year </mat-error>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Confirm Password" type="password" formControlName="confirmPassword">
+            <mat-error *ngIf="employeeForm.controls['confirmPassword'].hasError('required')">
+              Confirm Password is <strong>required</strong>
+            </mat-error>
+            <div class="row" >
+                <mat-error *ngIf="employeeForm.hasError('passwordsMismatch') && (employeeForm.dirty || employeeForm.touched)">
+                  Passwords do not match
+                </mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+          <mat-form-field class="col-6">
+            <mat-label>Choose a Date of Birth</mat-label>
+            <input matInput [matDatepicker]="DOB_picker" formControlName="DOB">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="DOB_picker"></mat-datepicker-toggle>
+            <mat-datepicker #DOB_picker></mat-datepicker>
+            <div *ngIf="employeeForm.get('DOB')?.errors != null && employeeForm.get('DOB')?.touched">
+              <mat-error *ngIf="employeeForm.get('DOB')?.hasError('required')">Date of Birth is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('DOB')?.hasError('isUnder18')">Employee must be at least 18 years old</mat-error>
+            </div>
+          </mat-form-field>
+        <div class="col-6">
+          <mat-radio-group formControlName="gender">
+            <mat-label>Choose Gender</mat-label>
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+          </mat-radio-group>
+        </div>
       </div>
 
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Position" formControlName="position">
+            <div *ngIf="employeeForm.get('position')?.errors != null && employeeForm.get('position')?.touched">
+              <mat-error *ngIf="employeeForm.get('position')?.hasError('required')">Position is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('position')?.hasError('minlength')">Position must be at least 2 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('position')?.hasError('maxlength')">Position must be less than 50 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('position')?.hasError('pattern')">Position cannot contain numbers</mat-error>
+              </div>
+          </mat-form-field>
+        </div>
+
+          <mat-form-field class="col-3">
+            <mat-label>Choose a Hire date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="hireDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+              <div *ngIf="employeeForm.get('hireData')?.errors != null && employeeForm.get('hireData')?.touched">
+                <mat-error *ngIf="employeeForm.get('hireData')?.hasError('required')">Year is required</mat-error>
+                <mat-error *ngIf="employeeForm.get('hireData')?.hasError('min')">Hire Data must be at least 1970</mat-error>
+                <mat-error *ngIf="employeeForm.get('hireData')?.hasError('max')">hire Data must be a valid past year </mat-error>
+              </div>
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <mat-select  formControlName="jobType" placeholder="Please select job type">
+              <mat-option value="full-time">Full-time</mat-option>
+              <mat-option value="part-time">Part-time</mat-option>
+            </mat-select>
+            <div *ngIf="employeeForm.get('jobType')?.errors != null && employeeForm.get('jobType')?.touched">
+            <mat-error *ngIf="employeeForm.get('jobType')?.hasError('required')">Job type is required</mat-error>
+          </div>
+          </mat-form-field>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput #nationalID placeholder="National ID" formControlName="nationalId">
+            <mat-hint align="end">{{nationalID.value.length}} / 14</mat-hint>
+            <div *ngIf="employeeForm.get('nationalId')?.errors != null && employeeForm.get('nationalId')?.touched">
+              <mat-error *ngIf="employeeForm.get('nationalId')?.hasError('required')">National ID is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('nationalId')?.hasError('pattern')">Invalid Egyptian national ID number</mat-error>
+          </div>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <mat-form-field class="full-width">
+            <input matInput #salary min="3500" max="200000" placeholder="Salary" type="number" formControlName="salary">
+            <mat-hint align="end">{{salary.value}} / 200000</mat-hint>
+            <div *ngIf="employeeForm.get('salary')?.errors != null && employeeForm.get('salary')?.touched">
+              <mat-error *ngIf="employeeForm.get('salary')?.hasError('required')">Salary is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('salary')?.hasError('min')">Salary must be at least 3500</mat-error>
+              <mat-error *ngIf="employeeForm.get('salary')?.hasError('max')">Salary must be less than 200000</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+          <mat-form-field class="col-6">
+            <mat-select  formControlName="depId" placeholder="Please select Department ID">
+              <mat-option *ngFor="let dep of departments" value={{dep._id}}>{{dep.name}}</mat-option>
+            </mat-select>
+            <div *ngIf="employeeForm.get('depId')?.errors != null && employeeForm.get('depId')?.touched">
+              <mat-error *ngIf="employeeForm.get('depId')?.hasError('required')">Department ID is required</mat-error>
+            </div>
+          </mat-form-field>
+      </div>
+      <div class="row" formGroupName="academicQualifications">
+        <h3 class="m-2">Academic Qualification </h3>
+        <div class="col-3">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="College" formControlName="college">
+            <div *ngIf="employeeForm.get('academicQualifications.college')?.errors != null && employeeForm.get('academicQualifications.college')?.touched">
+              <mat-error *ngIf="employeeForm.get('academicQualifications.college')?.hasError('required')">College name is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('academicQualifications.college')?.hasError('minlength')">College name must be at least 2 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('academicQualifications.college')?.hasError('maxlength')">College name must be less than 60 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('academicQualifications.college')?.hasError('pattern')">College name cannot contain numbers</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+        <mat-form-field class="col-3">
+          <mat-select formControlName="degree" placeholder="Please Select a degree">
+            <mat-option value="bachelor">Bachelor</mat-option>
+            <mat-option value="master">Master</mat-option>
+            <mat-option value="doctoral">Doctoral</mat-option>
+            <mat-option value="phd">PhD</mat-option>
+          </mat-select>
+          <div *ngIf="employeeForm.get('academicQualifications.degree')?.errors != null && employeeForm.get('academicQualifications.degree')?.touched">
+            <mat-error *ngIf="employeeForm.get('academicQualifications.degree')?.hasError('required')">Degree is required</mat-error>
+          </div>
+        </mat-form-field>
+        <div class="col-3">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Institution" formControlName="institution">
+            <div *ngIf="employeeForm.get('academicQualifications.institution')?.errors != null && employeeForm.get('academicQualifications.institution')?.touched">
+              <mat-error *ngIf="employeeForm.get('academicQualifications.institution')?.hasError('required')">Institution is required</mat-error>
+              <mat-error *ngIf="employeeForm.get('academicQualifications.institution')?.hasError('minlength')">Institution must be at least 2 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('academicQualifications.institution')?.hasError('maxlength')">Institution must be less than 50 characters</mat-error>
+              <mat-error *ngIf="employeeForm.get('academicQualifications.institution')?.hasError('pattern')">Institution cannot contain numbers</mat-error>
+            </div>
+          </mat-form-field>
+        </div>
+        <div class="col-3">
+          <mat-form-field class="full-width">
+          <input matInput type="number" placeholder="Graduation Year" formControlName="year" min="1900" title="Please enter a valid year (e.g., 1999)">
+          <div *ngIf="employeeForm.get('academicQualifications.year')?.errors != null && employeeForm.get('academicQualifications.year')?.touched">
+            <mat-error *ngIf="employeeForm.get('academicQualifications.year')?.hasError('required')">Year is required</mat-error>
+            <mat-error *ngIf="employeeForm.get('academicQualifications.year')?.hasError('min')">Graduation Year must be at least 1970</mat-error>
+            <mat-error *ngIf="employeeForm.get('academicQualifications.year')?.hasError('max')">Graduation Year must be a valid past year </mat-error>
+          </div>
+        </mat-form-field>
+        </div>
+
     </div>
-  </div>
-  <div appearance="fill">
-    <h2>Hire Date</h2>
-    <input matInput type="date" class="form-control" formControlName="hireDate">
-    <div *ngIf="employeeForm.get('hireData')?.errors != null && employeeForm.get('hireData')?.touched">
-      <mat-error *ngIf="employeeForm.get('hireData').hasError('required')">Year is required</mat-error>
-      <mat-error *ngIf="employeeForm.get('hireData').hasError('min')">Hire Data must be at least 1970</mat-error>
-      <mat-error *ngIf="employeeForm.get('hireData').hasError('max')">hire Data must be a valid past year </mat-error>
-    </div>
-  </div>
-  <div appearance="fill">
-    <h2>Position</h2>
-    <input class="form-control" formControlName="position">
-    <div *ngIf="employeeForm.get('position')?.errors != null && employeeForm.get('position')?.touched">
-    <mat-error *ngIf="employeeForm.get('position').hasError('required')">Position is required</mat-error>
-    <mat-error *ngIf="employeeForm.get('position').hasError('minlength')">Position must be at least 2 characters</mat-error>
-    <mat-error *ngIf="employeeForm.get('position').hasError('maxlength')">Position must be less than 50 characters</mat-error>
-    <mat-error *ngIf="employeeForm.get('position').hasError('pattern')">Position cannot contain numbers</mat-error>
-    </div>
-  </div>
+      <div class="col">
+        <mat-form-field class="full-width">
+          <input matInput #phoneNumber  placeholder="Phone number" type="text" formControlName="phoneNumber">
+          <mat-hint align="end">{{phoneNumber.value}} / 11</mat-hint>
+          <div *ngIf="employeeForm.get('phoneNumber')?.errors != null && employeeForm.get('phoneNumber')?.touched">
+            <mat-error *ngIf="employeeForm.get('phoneNumber')?.hasError('required')">Phone number is required</mat-error>
+            <mat-error *ngIf="employeeForm.get('phoneNumber')?.hasError('pattern')">Invalid Egyptian phone number</mat-error>
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <mat-form-field class="full-width">
+          <textarea matInput placeholder="Address" formControlName="address"></textarea>
+          <div *ngIf="employeeForm?.get('address')?.errors != null && employeeForm.get('address')?.touched">
+            <mat-error *ngIf="employeeForm?.get('address')?.hasError('required')">Address is required</mat-error>
+            <mat-error *ngIf="employeeForm?.get('address')?.hasError('minlength')">Address must be at least 5 characters</mat-error>
+            <mat-error *ngIf="employeeForm?.get('address')?.hasError('maxlength')">Address must be less than 150 characters</mat-error>
+            <mat-error *ngIf="employeeForm?.get('address')?.hasError('pattern')">Address must contain at least one alphabetic character</mat-error>
+            </div>
+        </mat-form-field>
+      </div>
 
-  <div appearance="fill">
-    <h2>Job Type</h2>
-    <mat-select class="form-control" formControlName="jobType" placeholder="Please select job type">
-      <mat-option value="full-time">Full-time</mat-option>
-      <mat-option value="part-time">Part-time</mat-option>
-    </mat-select>
-    <div *ngIf="employeeForm.get('jobType')?.errors != null && employeeForm.get('jobType')?.touched">
+      <div class="d-flex flex-column align-items-center mb-2">
+        <div class="p-2">
+          <button
+            mat-raised-button
+            type="button"
+            [ngStyle]="{ backgroundColor: '#89A7CA', color: '#fff' }"
+            class="Cphoto"
+            (click)="pImage.click()"
+          >
+          <mat-icon>cloud_upload</mat-icon> Upload Employee Image
+          </button>
+          <input
+          name="pImage"
+          #pImage
+          (change)="onFileSelect($event)"
+          type="file"
+          style="display: none"
+          accept="image/*"
+        />
+        </div>
+        <div class="p-2 text-success" *ngIf="uploadStatus">
+          <mat-hint><mat-icon>done</mat-icon> Uploded successfuly</mat-hint>
+        </div>
+      </div>
 
-    <mat-error *ngIf="employeeForm.get('jobType').hasError('required')">Job type is required</mat-error>
-  </div>
-</div>
-  <div appearance="fill">
-    <h2>Department ID</h2>
-    <select class="form-select" formControlName="depId">
-      <option selected>Select Employee Department</option>
-      <option *ngFor="let dep of departments" value={{dep._id}}>{{dep.name}}</option>
-    </select>
-    <div *ngIf="employeeForm.get('depId')?.errors != null && employeeForm.get('depId')?.touched">
-
-    <mat-error *ngIf="employeeForm.get('depId').hasError('required')">Department ID is required</mat-error>
-  </div>
-</div>
-  <div appearance="fill">
-    <h2>Salary</h2>
-    <input class="form-control" type="number" formControlName="salary" min="3500" max="200000">
-    <div *ngIf="employeeForm.get('salary')?.errors != null && employeeForm.get('salary')?.touched">
-    <mat-error *ngIf="employeeForm.get('salary').hasError('required')">Salary is required</mat-error>
-    <mat-error *ngIf="employeeForm.get('salary').hasError('min')">Salary must be at least 3500</mat-error>
-    <mat-error *ngIf="employeeForm.get('salary').hasError('max')">Salary must be less than 200000</mat-error>
-  </div>
-</div>
-
-  <div appearance="fill">
-    <h2>Phone Number</h2>
-    <input class="form-control" formControlName="phoneNumber">
-    <div *ngIf="employeeForm.get('phoneNumber')?.errors != null && employeeForm.get('phoneNumber')?.touched">
-
-    <mat-error *ngIf="employeeForm.get('phoneNumber').hasError('required')">Phone number is required</mat-error>
-    <mat-error *ngIf="employeeForm.get('phoneNumber').hasError('pattern')">Invalid Egyptian phone number</mat-error>
-  </div>
-</div>
-
-  <div class="mb-5">
-    <h2>Address</h2>
-    <input class="form-control" formControlName="address" class="form-control">
-    <div *ngIf="employeeForm.get('address')?.errors != null && employeeForm.get('address')?.touched">
-
-    <mat-error *ngIf="employeeForm.get('address').hasError('required')">Address is required</mat-error>
-    <mat-error *ngIf="employeeForm.get('address').hasError('minlength')">Address must be at least 5 characters</mat-error>
-    <mat-error *ngIf="employeeForm.get('address').hasError('maxlength')">Address must be less than 150 characters</mat-error>
-    <mat-error *ngIf="employeeForm.get('address').hasError('pattern')">Address must contain at least one alphabetic character</mat-error>
-    </div>
-  </div>
-  <button mat-raised-button class="mb-4" color="primary" type="submit">Submit</button>
+    </mat-card-content>
+    <mat-card-actions class="d-flex justify-content-end m-3">
+      <button mat-raised-button color="primary" type="submit"
+      [disabled]="employeeForm.invalid && !uploadStatus ? true : false"
+      ><mat-icon>send</mat-icon> Submit</button>
+    </mat-card-actions>
+  </mat-card>
 </form>
-
 
