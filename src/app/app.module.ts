@@ -59,6 +59,7 @@ import { AddDepartmentComponent } from './departments/add-department/add-departm
 import { GetDepartmentsComponent } from './departments/get-departments/get-departments.component';
 import { UpdateDepartmentComponent } from './departments/update-department/update-department.component';
 import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
+import { LeaveReportComponent } from './leave-report/leave-report.component';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { DepartmentDetailsComponent } from './departments/department-details/dep
     AddDepartmentComponent,
     GetDepartmentsComponent,
     UpdateDepartmentComponent,
-    DepartmentDetailsComponent
+    DepartmentDetailsComponent,
+    LeaveReportComponent
   ],
   imports: [
     BrowserModule,

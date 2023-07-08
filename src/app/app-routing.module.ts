@@ -28,6 +28,7 @@ import { GetDepartmentsComponent } from './departments/get-departments/get-depar
 import { AddDepartmentComponent } from './departments/add-department/add-department.component';
 import { UpdateDepartmentComponent } from './departments/update-department/update-department.component';
 import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
+import { LeaveReportComponent } from './leave-report/leave-report.component';
 const routes: Routes = [
 
   { path: '', component: SigninComponent,canActivate: [homeGuard]},
@@ -53,7 +54,8 @@ const routes: Routes = [
   {path: 'alldepartments', component:GetDepartmentsComponent},
   {path: 'addDepartment', component:AddDepartmentComponent},
   {path: 'updateDepartment/:id', component:UpdateDepartmentComponent},
-  {path: 'departmentDetails/:id', component:DepartmentDetailsComponent}
+  {path: 'departmentDetails/:id', component:DepartmentDetailsComponent},
+  {path:'leaveReport' , component:LeaveReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
 ];
 
 @NgModule({
