@@ -63,8 +63,13 @@ export class AddVacationComponent implements OnInit {
         getAllVacations(){
          this._vacation.getAllVacations(this.currentPageIndex, this.pageSize).subscribe((res:any)=>{
         //  this.vacations=res.allVacations;
-         this.totalCount=res.allVacations.totalCount
-         this.totalPages=res.allVacations.totalPages
+         console.log(res)
+         console.log(res.paginationInfo.totalCount)
+         console.log(res.paginationInfo.totalPages)
+
+         this.totalCount=res.paginationInfo.totalCount
+         this.totalPages=res.paginationInfo.totalPages
+
         //  this.dataSource=new MatTableDataSource(this.vacations);
          this.dataSource.data = res.allVacations;
          console.log(res.allVacations);
@@ -84,7 +89,7 @@ export class AddVacationComponent implements OnInit {
           this.pageSize = newPageSize;
           this._vacation.getAllVacations(this.currentPageIndex, this.pageSize).subscribe((result) => {
             this.vacations=result.allVacations;
-            this.totalCount = result.allVacations.totalDocs;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
@@ -93,11 +98,11 @@ export class AddVacationComponent implements OnInit {
       }
       
       onPreviousPage() {
-        if (this.currentPageIndex > 1) {
+        if (this.currentPageIndex > 0) {
           this.currentPageIndex--;
           this._vacation.getAllVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.allVacations;
-            this.totalCount = result.allVacations;
+            this.totalCount = result.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
@@ -109,7 +114,7 @@ export class AddVacationComponent implements OnInit {
           this.currentPageIndex++;
           this._vacation.getAllVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.allVacations;
-            this.totalCount = result.allVacations.totalCount;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
