@@ -53,7 +53,8 @@ import { CheckinCheckoutComponent } from './User-attendance/checkin-checkout/che
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HolidayComponent } from './holiday/holiday.component';
 import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.component';
-import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.component'; // Import MatSnackBarModule
+import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.component';
+import { PayrollHistoryComponent } from './payroll-history/payroll-history.component'; // Import MatSnackBarModule
 
 @NgModule({
   declarations: [
@@ -83,6 +84,7 @@ import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.co
     HolidayComponent,
     HolidayDialogComponent,
     EmployeeHolidayComponent,
+    PayrollHistoryComponent,
   ],
   imports: [
     BrowserModule,

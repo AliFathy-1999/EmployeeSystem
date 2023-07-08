@@ -29,8 +29,4 @@ createHoliday(data: object):Observable<any>{
 
 }
 
-// getEmployeeSalary(): Observable<any>{
-//   return this._HttpClient.get(`${this.ROOT_URL}employee/salary/`);
-// }
-
 }

@@ -1,19 +1,17 @@
 import {AfterViewInit, Component,OnInit,ViewChild} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator,PageEvent} from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Toast, ToastrService } from 'ngx-toastr';
-import { ServiceService } from '../holiday/service.service';
+import { PayrolllHistoryService } from '../service/payrolll-history.service';
 
 @Component({
-  selector: 'app-employee-holiday',
-  templateUrl: './employee-holiday.component.html',
-  styleUrls: ['./employee-holiday.component.css']
+  selector: 'app-payroll-history',
+  templateUrl: './payroll-history.component.html',
+  styleUrls: ['./payroll-history.component.css']
 })
-export class EmployeeHolidayComponent implements OnInit , AfterViewInit{
+export class PayrollHistoryComponent implements OnInit , AfterViewInit{
 
-  holiday: any[] = [];
-  displayedColumns: string[] = ['holidayName', 'holidayDate','noOfDays'];
+  payroll: any[] = [];
+  displayedColumns: string[] = ['id','userrName',  'position','grossSalary', 'bonus',  'deduction', 'netSalary'];
   loading: boolean = true;
 
   dataSource = new MatTableDataSource<any>();
@@ -25,13 +23,13 @@ export class EmployeeHolidayComponent implements OnInit , AfterViewInit{
   totalPages!: number;
 
 
-constructor(private _dialog:MatDialog, private _holiday: ServiceService,private toastr:ToastrService){
+constructor(private _payroll:PayrolllHistoryService){
 
 }
 
-getAllHoliday(){
-  this._holiday.getAllHoliday(this.currentPageIndex, 10).subscribe((res:any)=>{
-    this.holiday = res.data.docs;
+getAllHistory(){
+  this._payroll.getAllPayrollHistory(this.currentPageIndex, 10).subscribe((res:any)=>{
+    this.payroll = res.data.docs;
     this.dataSource.data = res.data.docs;
     this.totalCount = res.data.totalDocs;
     this.totalPages = res.data.totalPages;
@@ -41,7 +39,7 @@ getAllHoliday(){
 }
 
 ngOnInit(): void {
-  this.getAllHoliday();
+  this.getAllHistory();
 }
 
 
@@ -58,10 +56,10 @@ ngAfterViewInit() {
     if (newPageIndex !== this.currentPageIndex || newPageSize !== this.pageSize) {
       this.currentPageIndex = newPageIndex;
       this.pageSize = newPageSize;
-      this._holiday.getAllHoliday(this.currentPageIndex, this.pageSize).subscribe((result : any) => {
-        this.holiday=result.data.docs;
+      this._payroll.getAllPayrollHistory(this.currentPageIndex, this.pageSize).subscribe((result : any) => {
+        this.payroll=result.data.docs;
         this.totalCount = result.data.totalDocs;
-        this.dataSource = new MatTableDataSource(this.holiday);
+        this.dataSource = new MatTableDataSource(this.payroll);
         this.dataSource.paginator = this.paginator;
       });
     }
@@ -70,10 +68,10 @@ ngAfterViewInit() {
   onPreviousPage() {
     if (this.currentPageIndex > 1) {
       this.currentPageIndex--;
-      this._holiday.getAllHoliday(this.currentPageIndex, 10).subscribe((result:any) => {
-        this.holiday = result.data.docs;
+      this._payroll.getAllPayrollHistory(this.currentPageIndex, 10).subscribe((result:any) => {
+        this.payroll = result.data.docs;
         this.totalCount = result.data.totalDocs;
-        this.dataSource = new MatTableDataSource(this.holiday);
+        this.dataSource = new MatTableDataSource(this.payroll);
         this.dataSource.paginator = this.paginator;
       });
     }
@@ -82,10 +80,10 @@ ngAfterViewInit() {
   onNextPage() {
     if (this.currentPageIndex < this.totalPages) {
       this.currentPageIndex++;
-      this._holiday.getAllHoliday(this.currentPageIndex, 10).subscribe((result:any) => {
-        this.holiday = result.data.docs;
+      this._payroll.getAllPayrollHistory(this.currentPageIndex, 10).subscribe((result:any) => {
+        this.payroll = result.data.docs;
         this.totalCount = result.data.totalDocs;
-        this.dataSource = new MatTableDataSource(this.holiday);
+        this.dataSource = new MatTableDataSource(this.payroll);
         this.dataSource.paginator = this.paginator;
       });
     }
