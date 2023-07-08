@@ -16,7 +16,7 @@ import { interval } from 'rxjs';
 export class NavComponent {
 
 
-  
+
   announcements :any ;
   empMessages:any ;
   messageNotifications :boolean = false;
@@ -33,12 +33,12 @@ export class NavComponent {
 
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
-      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory'];
+      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory','alldepartments'];
     } else if(this.user && this.user.role == 'USER'){
       this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance','me/holiday'];
 
       this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
- 
+
         this.empMessages = res.data
 
       })
@@ -107,4 +107,4 @@ console.log("nen")
       });
     });
   }
-}        
+}
