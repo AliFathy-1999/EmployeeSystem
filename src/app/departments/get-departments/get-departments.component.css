@@ -1,0 +1,35 @@
+/* Table Component CSS */
+.filter-input {
+  margin-bottom: 10px;
+  background-color: #eaeaea;
+  color: #333333;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th {
+  background-color: #f5f5f5;
+  color: #333333;
+}
+
+.data-table td {
+  background-color: #ffffff;
+  color: #333333;
+}
+
+.paginator {
+  margin-top: 10px;
+}
+
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 10em;
+}
+
+.profile-image{
+  border-radius: 50%;
+}

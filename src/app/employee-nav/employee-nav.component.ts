@@ -31,6 +31,21 @@ export class EmployeeNavComponent {
     constructor(private router:Router , private _EmployeeMessages :EmployeeMessagesService ,
        private _Announcements:AnnouncementService){
 
+        this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
+ 
+          this.empMessages = res.data
+
+        })
+
+        this._Announcements.getLastAnnouncement().subscribe((res:any)=>{
+ 
+          this.announcements = res.data
+
+        })
+
+        this.checkifNewAnnouncements()
+        this.checkifNewMessages()
+
     }
     gotopage(page:string){
       this.router.navigate([`${page}`])
@@ -45,7 +60,7 @@ export class EmployeeNavComponent {
     };
 
     checkifNewMessages(){
-
+console.log("nen")
       interval(4000).subscribe(() => {
         console.log("send")
         this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
@@ -79,3 +94,4 @@ export class EmployeeNavComponent {
   }
 
 
+       
