@@ -15,7 +15,7 @@ import { AddVacationComponent } from '../add-vacation/add-vacation.component';
 //   status: string;
 //   viewStatus: string;
 // }
-
+                                        //ADMIN//
 @Component({
   selector: 'app-vacation-dialog',
   templateUrl: './vacation-dialog.component.html',
@@ -42,54 +42,57 @@ export class VacationDialogComponent {
   vacationForm = new FormGroup({
     employeeId: new FormControl(null, [Validators.required]),
     status: new FormControl(null, [Validators.required]),
-    totalDays: new FormControl(null, [Validators.required,Validators.min(0),Validators.max(21)]),
+    totalDays: new FormControl(null, [Validators.required,Validators.min(0)]),
   });
 
-  // submitData(vacationForm: FormGroup) {
-  //   if (this.data) {
-  //     const formData =  {
-  //       employeeId: vacationForm.get('employeeId')?.value ?? this.oldData?.employeeId ?? null,
-  //       status: vacationForm.get('status')?.value ?? this.oldData?.status ?? null,
-  //       totalDays: vacationForm.get('totalDays')?.value ?? this.oldData?.totalDays ?? null,
-  //     };
-  //   //   this._vacation.updateVacation(this.data.id, formData).subscribe({
-  //   //     next:(res: any) => {
-  //   //       this._dialogRef.close(true);
-  //   //     },
-  //   //     error: (HttpErrorResponse) => {
-  //   //       this.toastr.error(HttpErrorResponse.error.message);
-  //   //     }
-  //   // });
-  //   }else{
-  //     const formData = new FormData();
-  //     formData.append()
-  //     // const formData = {
-  //     //   employeeId: vacationForm.get('employeeId')?.value,
-  //     //   status: vacationForm.get('status')?.value,
-  //     //   totalDays: vacationForm.get('totalDays')?.value,
-  //     // };
+
 
   submitData(vacationForm: FormGroup) {
-    // if (this.data) {
-      const vacationObj = {
-         employeeId: vacationForm.get('employeeId')?.value,
-         status: vacationForm.get('status')?.value,
-         totalDays: vacationForm.get('totalDays')?.value,
-       };
-      this._vacation.addVacationByAdmin(vacationObj).subscribe({next:(res: any)=> {
-          this._dialogRef.close(true);
-        },error: (HttpErrorResponse) => {
-          this.toastr.error(HttpErrorResponse.error.message);
-        }    
-      });
-    // }  
-  }
+    if(this.vacationForm.valid){
+      if(this.data){
+        
+        this._vacation.updateVacationByAdmin(this.data._id,this.vacationForm.value).subscribe({
+          next:(val:any)=>{
+            this.toastr.success('Vacation Updated successfully');
+            this._dialogRef.close(true); 
+  
+          },
+          error: (HttpErrorResponse) => {
+            this.toastr.error(HttpErrorResponse.error.message)
+          }
+        })
+      }else{
+        console.log(this.vacationForm.value);
+
+        this._vacation.addVacationByAdmin(this.vacationForm.value).subscribe({
+        
+          next:(val:any)=>{
+            this.toastr.success('Vacation added successfully');
+            this._dialogRef.close(true); 
+  
+          },
+          error: (HttpErrorResponse) => {
+            this.toastr.error(HttpErrorResponse.error.message)
+          }
+        })
+      }
 
 
-  // ngOnInit(): void {
-  //   this.vacationForm.patchValue(this.data);
-  // }
+    }
+   
+    }
 
+
+
+    ngOnInit(): void {
+      if (this.data) { 
+        this.vacationForm.patchValue({
+          employeeId: this.data.employeeId._id, 
+          status: this.data.status,
+          totalDays: this.data.totalDays
+        });
+      }
+    }
   closeDialog() {
     this._dialogRef.close();
   }

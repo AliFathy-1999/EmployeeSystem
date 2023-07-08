@@ -5,17 +5,21 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item"> {{item | titlecase}} </a>
+
+      <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/'+item.routeName">
+        <fa-icon [icon]="item.icon" class="text-primary menu-icon"></fa-icon>
+        {{item.name | titlecase}} </a>
       <a [routerLink]='["/Messages"]' class="notification" (click)='toggleMessageBadgeVisibility()'>
-        <span>MESSAGES</span>
+        <span><fa-icon [icon]="faEnvelope" class="text-primary menu-icon"></fa-icon> MESSAGES</span>
         <span class="badge" *ngIf="messageNotifications"> New</span>
       </a>
-      
-      <a [routerLink]='["/Announcements"]' class="notification" (click)='toggleAnnouncementBadgeVisibility()'>
-        <span>ANNOUNCEMENTS</span>
-        <div class="badge" *ngIf="announcementNotifications" >New</div>
-      </a>
-      <a  mat-list-item (click)="logout()">Logout</a>
+      <p>
+        <a [routerLink]='["/Announcements"]' class="notification" (click)='toggleAnnouncementBadgeVisibility()'>
+          <span><fa-icon [icon]="faBullhorn" class="text-primary menu-icon"></fa-icon> ANNOUNCEMENTS</span>
+          <div class="badge" *ngIf="announcementNotifications" >New</div>
+        </a>
+    </p>
+      <a  mat-list-item (click)="logout()"><fa-icon [icon]="faSignOutAlt" class="text-primary menu-icon"></fa-icon> Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -30,7 +34,7 @@
       </button>
       <span>employeeXpert</span>
     </mat-toolbar>
-    
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

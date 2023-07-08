@@ -37,7 +37,7 @@ import { EmployeeDetailsComponent } from './employee/employee-details/employee-d
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { PayrollComponent } from './payroll/payroll.component';
 import { PayrollDialogComponent } from './payroll-dialog/payroll-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule,MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EmployeePayrollComponent } from './employee-payroll/employee-payroll.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { CookieService } from 'ngx-cookie-service';
@@ -55,6 +55,11 @@ import { HolidayComponent } from './holiday/holiday.component';
 import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.component';
 import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.component';
 import { PayrollHistoryComponent } from './payroll-history/payroll-history.component'; // Import MatSnackBarModule
+import { AddDepartmentComponent } from './departments/add-department/add-department.component';
+import { GetDepartmentsComponent } from './departments/get-departments/get-departments.component';
+import { UpdateDepartmentComponent } from './departments/update-department/update-department.component';
+import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
+import { LeaveReportComponent } from './leave-report/leave-report.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +90,11 @@ import { PayrollHistoryComponent } from './payroll-history/payroll-history.compo
     HolidayDialogComponent,
     EmployeeHolidayComponent,
     PayrollHistoryComponent,
+    AddDepartmentComponent,
+    GetDepartmentsComponent,
+    UpdateDepartmentComponent,
+    DepartmentDetailsComponent,
+    LeaveReportComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,11 @@ import { EmployeeMessagesComponent } from './employee-messages/employee-messages
 import { HolidayComponent } from './holiday/holiday.component';
 import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.component';
 import { PayrollHistoryComponent } from './payroll-history/payroll-history.component';
+import { GetDepartmentsComponent } from './departments/get-departments/get-departments.component';
+import { AddDepartmentComponent } from './departments/add-department/add-department.component';
+import { UpdateDepartmentComponent } from './departments/update-department/update-department.component';
+import { DepartmentDetailsComponent } from './departments/department-details/department-details.component';
+import { LeaveReportComponent } from './leave-report/leave-report.component';
 const routes: Routes = [
 
   { path: '', component: SigninComponent,canActivate: [homeGuard]},
@@ -44,7 +49,13 @@ const routes: Routes = [
   {path:'employeeVacation' , component:EmployeeVacarionComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
   {path:'holiday' , component:HolidayComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   {path:'me/holiday' , component:EmployeeHolidayComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
-  {path:'payrollHistory' , component:PayrollHistoryComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}}
+  {path:'payrollHistory' , component:PayrollHistoryComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+  // Departments
+  {path: 'alldepartments', component:GetDepartmentsComponent},
+  {path: 'addDepartment', component:AddDepartmentComponent},
+  {path: 'updateDepartment/:id', component:UpdateDepartmentComponent},
+  {path: 'departmentDetails/:id', component:DepartmentDetailsComponent},
+  {path:'leaveReport' , component:LeaveReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
 ];
 
 @NgModule({

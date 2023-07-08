@@ -58,16 +58,20 @@ button:hover {
 	position: relative;
 	margin-left: 10px;
 	font-size: 19px;
+	margin-top: 8%;
 }
 input[type="password"] + #pass::after {
     content: url(../../assets/sleep.png);
     /* margin-left: 5px; */
-	
+	border-style: none;
+	z-index: 1000;
+
   }
   
   input[type=text] + #pass::after {
     content:url(../../assets/eye-care.png);
     /* margin-left: 5px; */
+	z-index: 1000;
   }
 
 .leftSign svg {
@@ -204,14 +208,16 @@ input {
 
 form input:focus {
 	border-bottom: 3px solid #EF9A53;
-	transform: translateY(-150%);
+	/* transform: translateY(-150%); */
 	font-size: 14px;
 	left: 0px;
 	color: #EF9A53;
 	outline: #fff;
 	background-color: #fff;
-	transform: translateX(0%);
-	transition: all 0.3s ease;
+	/* transform: translateX(0%);
+	transition: all 0.3s ease; */
+
+	
 }
 
 .overlay-container {

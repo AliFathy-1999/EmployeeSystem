@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <mat-form-field appearance="outline">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
                   <mat-label>totalDays</mat-label>
                   <input matInput type="number"  class="form-control" formControlName="totalDays" >
                 </mat-form-field>
@@ -35,14 +35,13 @@
                   <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['required']">totalDays is required!
                   </p>
                   <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['min']">minmum totalDays 0</p>
-                    <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['max']">maximum totalDays 21</p>
                 </div>
               </div>
             </div>
           </div>
   
           <!-- <div class="content"> -->
-          <div class="row">
+          <div class="row ">
             <div class="col-md-6">
               <div class="form-group">
                 <mat-form-field>
@@ -57,6 +56,12 @@
                   <p class="text-danger" *ngIf="vacationForm.get('fromDay')?.errors?.['required']">From date is required!
                   </p>
                 </div>
+                <!-- <div class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                <div  *ngIf="errors">
+                  <ul>
+                    <li class="text-danger" *ngFor="let error of errors">{{ error }}</li>
+                  </ul>
+                </div> -->
               </div>
             </div>
             <div class="col-md-6">
@@ -74,27 +79,39 @@
                   *ngIf="vacationForm.get('toDay')?.errors != null && vacationForm.get('toDay')?.touched">
                   <p class="text-danger" *ngIf="vacationForm.get('toDay')?.errors?.['required']">To date is required!</p>
                 </div>
+                <!-- <div class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+<div  *ngIf="errors">
+  <ul>
+    <li class="text-danger" *ngFor="let error of errors">{{ error }}</li>
+  </ul>
+</div> -->
               </div>
             </div>
             <!-- <div *ngIf="catMessage" class="alert mt-3 alert-danger text-center"
             role="alert">{{catMessage}}</div> -->
           </div>
   
-          <!-- <div class="col-md-12">
-            <div class="form-group">
-  
-              <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-              <input hidden formNameControl="bookImage" name="bookImage" accept="image/*"
-                (change)="onFileSelected($event)" #fileInput type="file" id="bookImage">
-            </div>
-          </div> -->
-          <!-- [disabled]="!vacationForm.valid" -->
-        </div>
+          <!-- <div class="col-md-12" >
+          <div class="form-group" >
+                <mat-form-field appearance="outline" style="width:100%;padding-right:5px; padding-left:5px; padding-top:20px;">
+                  <mat-label>totalDays</mat-label>
+                  <input matInput type="number"  class="form-control" formControlName="totalDays" >
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="vacationForm.get('totalDays')?.errors != null && vacationForm.get('totalDays')?.touched">
+                  <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['required']">totalDays is required!
+                  </p>
+                  <p class="text-danger" *ngIf="vacationForm.get('totalDays')?.errors?.['min']">minmum totalDays 0</p>
+                </div>
+               
+              </div>
+        </div> -->
         <div mat-dialog-action class="action">
           <button mat-raised-button class="btn btn-sucess btn-block p-3"
             type="submit" >{{data?'Update':'Save'}}</button>
-          <button mat-raised-button class="btn btn-danger btn-block p-3" (click)="closeDialog()"
+          <button mat-raised-button class="btn btn-danger btn-block p-3" [mat-dialog-close]="false" (click)="closeDialog()"
             type="button">Cancel</button>
+        </div>
         </div>
       </form>
     </div>

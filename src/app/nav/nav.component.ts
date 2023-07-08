@@ -7,39 +7,37 @@ import { GlobalService } from '../service/global.service';
 import { EmployeeMessagesService } from '../service/employee-messages.service';
 import { AnnouncementService } from '../service/announcement.service';
 import { interval } from 'rxjs';
-
+import { sideBarAdminItems , sideBarUserItems} from './dashboardItems';
+import {faEnvelope, faBullhorn ,faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent {
-
-
-  
   announcements :any ;
   empMessages:any ;
   messageNotifications :boolean = false;
   announcementNotifications :boolean = false;
-  menuItems: string[] = [];
-
-
+  menuItems: any;
+  sideBarItems:any
+  faEnvelope = faEnvelope; faBullhorn = faBullhorn;faSignOutAlt=faSignOutAlt;
   user: any = this.global.currentUser.getValue();
 
 
   constructor(private breakpointObserver: BreakpointObserver, private global: GlobalService, private router: Router
     ,private _EmployeeMessages :EmployeeMessagesService ,
     private _Announcements:AnnouncementService) {
-
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
-      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','holiday','employeeAttendance' , 'payrollHistory'];
-    } else if(this.user && this.user.role == 'USER'){
+      this.menuItems = sideBarAdminItems
 
-      this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance','me/holiday'];
+
+    } else if(this.user && this.user.role == 'USER'){
+      this.menuItems = sideBarUserItems;
 
       this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
- 
+
         this.empMessages = res.data
 
       })

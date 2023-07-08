@@ -8,6 +8,7 @@ import { VacationDialogComponent } from '../vacation-dialog/vacation-dialog.comp
 import {Vacation} from '../vacation';
 import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
 import { FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-employee-vacation',
   templateUrl: './employee-vacation.component.html',
@@ -22,25 +23,41 @@ export class EmployeeVacarionComponent {
   ngOnInit(): void {
     this.getAllEmployeeVacations();
       }
-      constructor(private _vacation:VocationServiceService, private _dialog:MatDialog){}
+      constructor(private _vacation:VocationServiceService, private _dialog:MatDialog,  private toastr: ToastrService,
+        ){}
       vacations:Vacation[]=[]
       currentPageIndex:number=0
       totalPages!:number
       
-      // openDialog(){
-      //   const dialogRef= this._dialog.open(EmployeeDialogComponent);
-      //   dialogRef.afterClosed().subscribe({
-      //    next:(res:any)=>{
-      //    if(res){
-      //      this.getAllEmployeeVacations();
-      //    }
-      //    }
-      //  })
-      //  }
+      openDialog(){
+        const dialogRef= this._dialog.open(EmployeeDialogComponent);
+        dialogRef.afterClosed().subscribe({
+         next:(val)=>{
+          if(val){
+           this.getAllEmployeeVacations();
+          }
+         }
+       })
+       }
 
+
+
+       openEditDialog(data:any){
+        const dialogRef= this._dialog.open(EmployeeDialogComponent,{
+        data,
+        });
+        dialogRef.afterClosed().subscribe({
+          next:(val)=>{
+           if(val){
+            this.getAllEmployeeVacations();
+           }
+          }
+        })
+       
+       }
 
        
- displayedColumns: string[] = [ '_id','reasonForVacation','fromDay','toDay','status','action'];
+ displayedColumns: string[] = [ '_id','totalDays','status','action'];
          dataSource = new MatTableDataSource<Vacation>();
          @ViewChild(MatPaginator) paginator!: MatPaginator;
        
@@ -48,55 +65,34 @@ export class EmployeeVacarionComponent {
            this.dataSource.paginator = this.paginator;
          }
 
-        //  openEditDialog(data:any){
-        //   const dialogRef=this._dialog.open(EmployeeDialogComponent,{
-        //       data
-        //      })
-        //      console.log(data)
-        //     dialogRef.afterClosed().subscribe((res:any)=>{
-        //       if(res){
-        //         this.getAllEmployeeVacations();
-        //       }
-        //      })
-        //   }
-
         getAllEmployeeVacations(){
          this._vacation.getAllEmployeeVacations(this.currentPageIndex, this.pageSize).subscribe((res:any)=>{
         //  this.vacations=res.allVacations;
-         this.totalCount=res.vacations.totalCount
-         this.totalPages=res.vacations.totalPages
+        this.totalCount=res.paginationInfo.totalCount
+        this.totalPages=res.paginationInfo.totalPages
         //  this.dataSource=new MatTableDataSource(this.vacations);
          this.dataSource.data = res.vacations;
          this.loading=false;
          console.log(res.vacations);
+         console.log("this.totalCount",res.paginationInfo.totalCount);
+         console.log("this.totalPages",this.totalPages);
+
          console.log("res.allVacations",res.vacations[0].employeeId);
          this.dataSource.paginator=this.paginator;
 
          })
        }
-      //  updateData(payrollForm: FormGroup) {
-      //   if (this.data) {
-      //     if (this.payrollForm.valid) {
-      //       const payrollObj = {
-      //         bonus: payrollForm.get('bonus')?.value !== null && payrollForm.get('bonus')?.value !== undefined ? payrollForm.get('bonus')?.value : 0,
-      //         grossSalary: payrollForm.get('grossSalary')?.value ? payrollForm.get('grossSalary')?.value : this.oldData.grossSalary
-      //       };
-      //       this._salary.editSalary(this.data.employeeId._id, payrollObj).subscribe({
-      //       next:(res: any) => {
-      //         this._dialogRef.close(true);
-      //         // this.toastr.success("Data Updated Successfully");
-      //       },
-      //       error:  (error: any) => {
-      //         console.log(this.data.employeeId._id)
-      //         // this.toastr.error(error.error.message);
-      //       }
-      //       })
-      //    }
-      //   }
-      //   }
+      
        deleteVacation(id:number){
-       this._vacation.deleteVacationById(id).subscribe((res:any)=>{
-         this.getAllEmployeeVacations();
+       this._vacation.deleteVacationById(id).subscribe({
+        next:(res)=>{
+          // this.toastr.success('Vacation deleted successfully');
+          alert('Vacation deleted successfully');
+          this.getAllEmployeeVacations();
+        },
+        error:(err)=>{
+          console.error(err)
+        }
        })
        }
 
@@ -108,7 +104,7 @@ export class EmployeeVacarionComponent {
           this.pageSize = newPageSize;
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, this.pageSize).subscribe((result) => {
             this.vacations=result.vacations;
-            this.totalCount = result.vacations.totalCount;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
@@ -116,11 +112,10 @@ export class EmployeeVacarionComponent {
       }
       
       onPreviousPage() {
-        if (this.currentPageIndex > 1) {
-          this.currentPageIndex--;
+        if (this.currentPageIndex > 0) {
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.vacations;
-            this.totalCount = result.vacations;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
@@ -132,7 +127,7 @@ export class EmployeeVacarionComponent {
           this.currentPageIndex++;
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.vacations;
-            this.totalCount = result.vacations.totalCount;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
