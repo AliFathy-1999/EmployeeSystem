@@ -5,6 +5,8 @@ import { GlobalService } from '../service/global.service';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-signin',
@@ -18,7 +20,8 @@ export class SigninComponent implements OnInit{
   ngOnInit(): void {
   
   }
-  constructor(private formBuilder: FormBuilder,private _global:GlobalService,private toastr:ToastrService,private _cookieService:CookieService,private router:Router) {
+  constructor(private formBuilder: FormBuilder,private _global:GlobalService,private toastr:ToastrService,private _cookieService:CookieService,private router:Router,private snackBar: MatSnackBar
+    ) {
     this.formData = new FormGroup({
       userName:new FormControl('' , [Validators.required]),
       password:new FormControl('' , [Validators.required])
@@ -27,7 +30,9 @@ export class SigninComponent implements OnInit{
 
   onSubmit(){
     this._global.signIn(this.formData.value).subscribe({next:(res:any) =>{
-      this.toastr.success("Signin successfully")
+      this.snackBar.open('Logined successfully','', {
+        duration: 1000,
+      });
       this._cookieService.delete('token');
       this._cookieService.set('token', res.data.token);
       this._global.saveCurrentUser();
@@ -40,7 +45,9 @@ export class SigninComponent implements OnInit{
     },error: (HttpErrorResponse) => {
       if(HttpErrorResponse.error.message){
         this.errorMessage="Check Your Username or Password"
-        this.toastr.error(this.errorMessage)
+        this.snackBar.open(this.errorMessage,'', {
+          duration: 1000,
+        })
       }
     }
     })
