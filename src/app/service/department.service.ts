@@ -23,4 +23,10 @@ export class DepartmentService {
   addDepartment(obj:any) {
     return this.http.post(`${this.api_url}/admin-dep`,obj);
   }
+  getDepartment(id:any){
+    return this.http.get(`${this.api_url}/dep/${id}`);
+  }
+  updateDepartment(id: any, department: any): Observable<any> {
+    return this.http.patch(`${this.api_url}/admin-dep/${id}`, department);
+  }
 }

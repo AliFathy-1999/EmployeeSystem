@@ -1,1 +1,54 @@
-<p>update-department works!</p>
+<div class="contanier">
+  <form [formGroup]="departmentForm" novalidate
+  (ngSubmit)="onSubmit()" class="container">
+    <mat-card class="employee-card">
+      <mat-card-header>
+        <mat-card-title class="mb-5">Department Information</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+
+        <div class="row">
+          <div class="col">
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Department Name" formControlName="name" [(ngModel)]="depData.name">
+              <div *ngIf="departmentForm.get('name')?.errors != null && departmentForm.get('name')?.touched">
+                <mat-error *ngIf="departmentForm.get('name')?.hasError('required')">Department Name is required</mat-error>
+                <mat-error *ngIf="departmentForm.get('name')?.hasError('minlength')">Department Name must be at least 3 characters</mat-error>
+                <mat-error *ngIf="departmentForm.get('name')?.hasError('maxlength')">Department Name must be less than 50 characters</mat-error>
+                <mat-error *ngIf="departmentForm.get('name')?.hasError('pattern')">Department name must contain only alphabetic characters</mat-error>
+              </div>
+            </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+        <mat-form-field class="col">
+          <mat-select  formControlName="managerId" placeholder="Please select Manager ID" [(ngModel)]="depData.managerId._id">
+            <mat-option *ngFor="let emp of employees" value={{emp._id}}>{{emp.firstName}} {{emp.lastName}}</mat-option>
+          </mat-select>
+          <div *ngIf="departmentForm.get('managerId')?.errors != null && departmentForm.get('depId')?.touched">
+            <mat-error *ngIf="departmentForm.get('depId')?.hasError('required')">Manager ID is required</mat-error>
+          </div>
+        </mat-form-field>
+      </div>
+          <div class="col">
+            <mat-form-field class="full-width">
+              <textarea matInput placeholder="Description" [(ngModel)]="depData.description" formControlName="description" #description></textarea>
+              <div *ngIf="departmentForm.get('description')?.errors != null && departmentForm.get('description')?.touched">
+                <mat-error *ngIf="departmentForm.get('description')?.hasError('required')">Description is required</mat-error>
+                <mat-error *ngIf="departmentForm.get('description')?.hasError('minlength')">Description must be at least 5 characters</mat-error>
+                <mat-error *ngIf="departmentForm.get('description')?.hasError('maxlength')">Description must be less than 255 characters</mat-error>
+                <mat-error *ngIf="departmentForm.get('description')?.hasError('pattern')">Description must contains at least one letter and numbers</mat-error>
+              </div>
+              <mat-hint align="end">{{description.value.length}} / 255</mat-hint>
+            </mat-form-field>
+          </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit"
+        [disabled]="departmentForm.invalid"
+        >Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  </div>
