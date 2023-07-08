@@ -1,4 +1,4 @@
-import { faUser,faTachometerAlt, faUsers, faBuilding, faFileInvoiceDollar, faCalendarPlus, faClipboardList, faSignInAlt, faEnvelope, faBullhorn, faCalendarDay, faUserCheck, faHistory, faFileAlt } from '@fortawesome/free-solid-svg-icons';
+import { faUser,faTachometerAlt, faUsers, faBuilding, faFileInvoiceDollar, faCalendarPlus, faClipboardList, faSignInAlt, faCalendarDay, faUserCheck, faHistory, faFileAlt } from '@fortawesome/free-solid-svg-icons';
 
 /*
       ['dashboard','getAllEmployees','alldepartments', 'payroll', 'addVacation',
@@ -41,16 +41,6 @@ export const sideBarAdminItems = [
     name:'Checkin & Checkout',
     routeName:'checkinCheckout',
     icon:faSignInAlt
-  },
-  {
-    name:'Messages',
-    routeName:'Messages',
-    icon:faEnvelope
-  },
-  {
-    name:'Announcements',
-    routeName:'Announcements',
-    icon:faBullhorn
   },
   {
     name:'Holiday',
