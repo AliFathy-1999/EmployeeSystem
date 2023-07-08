@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Toast, ToastrService } from 'ngx-toastr';
 import { ServiceService } from './service.service';
 import { HolidayDialogComponent } from '../holiday-dialog/holiday-dialog.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-holiday',
@@ -26,7 +28,7 @@ export class HolidayComponent implements OnInit , AfterViewInit{
   totalPages!: number;
 
 
-constructor(private _dialog:MatDialog, private _holiday: ServiceService,private toastr:ToastrService){
+constructor(private _dialog:MatDialog, private _holiday: ServiceService,private toastr:ToastrService,private snackBar: MatSnackBar){
 
 }
 
@@ -52,7 +54,6 @@ openDialog(){
   next:(res:any)=>{
   if(res){
     this.getAllHoliday();
-    this.toastr.success("Data Deleted Successfully");
   }  
   }
 })
@@ -67,6 +68,9 @@ ngAfterViewInit() {
 deletePayroll(id:number){
   this._holiday.deleteHolidayyById(id).subscribe((res:any)=>{
     this.getAllHoliday();
+    this.snackBar.open("Data Deleted Successfully",'', {
+      duration: 1000,
+    });
   })
   }
   

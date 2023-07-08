@@ -5,6 +5,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PayrollDialogComponent } from '../payroll-dialog/payroll-dialog.component';
 import { SalaryService } from '../service/salary.service';
 import { Toast, ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-payroll',
@@ -26,7 +28,7 @@ export class PayrollComponent implements OnInit , AfterViewInit{
   totalPages!: number;
 
 
-constructor(private _dialog:MatDialog, private _salary: SalaryService,private toastr:ToastrService){
+constructor(private _dialog:MatDialog, private _salary: SalaryService,private toastr:ToastrService,private snackBar: MatSnackBar){
 
 }
 
@@ -53,8 +55,7 @@ openDialog(){
   next:(res:any)=>{
   if(res){
     this.getAllSalary();
-    this.toastr.success("Data Deleted Successfully");
-  }  
+    }  
   }
 })
 }
@@ -68,6 +69,9 @@ ngAfterViewInit() {
 deletePayroll(id:number){
   this._salary.deleteEmployeeSalaryById(id).subscribe((res:any)=>{
     this.getAllSalary();
+    this.snackBar.open("Data Deleted Successfully",'', {
+      duration: 1000,
+    });  
   })
   }
   

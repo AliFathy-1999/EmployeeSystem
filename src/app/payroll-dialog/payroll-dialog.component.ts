@@ -3,6 +3,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SalaryService } from '../service/salary.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-payroll-dialog',
@@ -26,7 +27,7 @@ export class PayrollDialogComponent implements OnInit{
       grossSalary:Number
     }
   
-  constructor(private _salary : SalaryService, private _dialogRef: MatDialogRef<PayrollDialogComponent>,
+  constructor(private _salary : SalaryService, private snackBar: MatSnackBar, private _dialogRef: MatDialogRef<PayrollDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
   }
 
@@ -45,11 +46,15 @@ export class PayrollDialogComponent implements OnInit{
         this._salary.editSalary(this.data.employeeId._id, payrollObj).subscribe({
         next:(res: any) => {
           this._dialogRef.close(true);
+          this.snackBar.open('Data Updated Successfully','', {
+            duration: 1000,
+          });
           // this.toastr.success("Data Updated Successfully");
         },
         error:  (error: any) => {
-          console.log(this.data.employeeId._id)
-          // this.toastr.error(error.error.message);
+          this.snackBar.open(error.error.message,'', {
+            duration: 1000,
+          });
         }
         })
      }
