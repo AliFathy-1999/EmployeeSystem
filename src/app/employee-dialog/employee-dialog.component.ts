@@ -31,27 +31,7 @@ constructor(private _vacation:VocationServiceService,
   private toastr: ToastrService,
   private _dialogRef: MatDialogRef<EmployeeDialogComponent>,
   @Inject(MAT_DIALOG_DATA) public data:any){
-    // const tomorrow = new Date();
-    // tomorrow.setDate(tomorrow.getDate() + 1);
-    // const tomorrowString = tomorrow.toISOString().slice(0, 10);
-    // const tomorrowTimestamp = Date.parse(tomorrowString) / 1000;
-
-    // this.dateControl = new FormControl('', [
-    //   Validators.required,
-    //   Validators.pattern(/^\d{4}-\d{2}-\d{2}$/),
-    //   Validators.min(tomorrowTimestamp)
-    // ]);
-
-  // /  const ToDay = new Date();
-  //   ToDay.setDate(ToDay.getDate());
-  //   const toDayString = ToDay.toISOString().slice(0, 10);
-  //   const toDayTimestamp = Date.parse(toDayString) / 1000;
-
-    // this.dateControl2 = new FormControl('', [
-    //   Validators.required,
-    //   Validators.pattern(/^\d{4}-\d{2}-\d{2}$/),
-    //   Validators.min(toDayTimestamp)
-    // ]);
+  
 
     this.vacationForm = new FormGroup({
       reasonForVacation: new FormControl(null, [Validators.required]),

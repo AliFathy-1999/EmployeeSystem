@@ -65,18 +65,6 @@ export class EmployeeVacarionComponent {
            this.dataSource.paginator = this.paginator;
          }
 
-        //  openEditDialog(data:any){
-        //   const dialogRef=this._dialog.open(EmployeeDialogComponent,{
-        //       data
-        //      })
-        //      console.log(data)
-        //     dialogRef.afterClosed().subscribe((res:any)=>{
-        //       if(res){
-        //         this.getAllEmployeeVacations();
-        //       }
-        //      })
-        //   }
-
         getAllEmployeeVacations(){
          this._vacation.getAllEmployeeVacations(this.currentPageIndex, this.pageSize).subscribe((res:any)=>{
         //  this.vacations=res.allVacations;
@@ -91,26 +79,7 @@ export class EmployeeVacarionComponent {
 
          })
        }
-      //  updateData(payrollForm: FormGroup) {
-      //   if (this.data) {
-      //     if (this.payrollForm.valid) {
-      //       const payrollObj = {
-      //         bonus: payrollForm.get('bonus')?.value !== null && payrollForm.get('bonus')?.value !== undefined ? payrollForm.get('bonus')?.value : 0,
-      //         grossSalary: payrollForm.get('grossSalary')?.value ? payrollForm.get('grossSalary')?.value : this.oldData.grossSalary
-      //       };
-      //       this._salary.editSalary(this.data.employeeId._id, payrollObj).subscribe({
-      //       next:(res: any) => {
-      //         this._dialogRef.close(true);
-      //         // this.toastr.success("Data Updated Successfully");
-      //       },
-      //       error:  (error: any) => {
-      //         console.log(this.data.employeeId._id)
-      //         // this.toastr.error(error.error.message);
-      //       }
-      //       })
-      //    }
-      //   }
-      //   }
+      
        deleteVacation(id:number){
        this._vacation.deleteVacationById(id).subscribe({
         next:(res)=>{
