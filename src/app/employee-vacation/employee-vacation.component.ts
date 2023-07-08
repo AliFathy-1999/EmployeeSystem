@@ -8,6 +8,7 @@ import { VacationDialogComponent } from '../vacation-dialog/vacation-dialog.comp
 import {Vacation} from '../vacation';
 import { EmployeeDialogComponent } from '../employee-dialog/employee-dialog.component';
 import { FormGroup } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-employee-vacation',
   templateUrl: './employee-vacation.component.html',
@@ -22,7 +23,8 @@ export class EmployeeVacarionComponent {
   ngOnInit(): void {
     this.getAllEmployeeVacations();
       }
-      constructor(private _vacation:VocationServiceService, private _dialog:MatDialog){}
+      constructor(private _vacation:VocationServiceService, private _dialog:MatDialog,  private toastr: ToastrService,
+        ){}
       vacations:Vacation[]=[]
       currentPageIndex:number=0
       totalPages!:number
@@ -30,14 +32,29 @@ export class EmployeeVacarionComponent {
       openDialog(){
         const dialogRef= this._dialog.open(EmployeeDialogComponent);
         dialogRef.afterClosed().subscribe({
-         next:(res:any)=>{
-         if(res){
+         next:(val)=>{
+          if(val){
            this.getAllEmployeeVacations();
-         }
+          }
          }
        })
        }
 
+
+
+       openEditDialog(data:any){
+        const dialogRef= this._dialog.open(EmployeeDialogComponent,{
+        data,
+        });
+        dialogRef.afterClosed().subscribe({
+          next:(val)=>{
+           if(val){
+            this.getAllEmployeeVacations();
+           }
+          }
+        })
+       
+       }
 
        
  displayedColumns: string[] = [ '_id','totalDays','status','action'];
@@ -95,8 +112,15 @@ export class EmployeeVacarionComponent {
       //   }
       //   }
        deleteVacation(id:number){
-       this._vacation.deleteVacationById(id).subscribe((res:any)=>{
-         this.getAllEmployeeVacations();
+       this._vacation.deleteVacationById(id).subscribe({
+        next:(res)=>{
+          // this.toastr.success('Vacation deleted successfully');
+          alert('Vacation deleted successfully');
+          this.getAllEmployeeVacations();
+        },
+        error:(err)=>{
+          console.error(err)
+        }
        })
        }
 
@@ -117,7 +141,6 @@ export class EmployeeVacarionComponent {
       
       onPreviousPage() {
         if (this.currentPageIndex > 1) {
-          this.currentPageIndex--;
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.vacations;
             this.totalCount = result.vacations;

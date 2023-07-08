@@ -36,7 +36,7 @@
       <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Action</th>
         <td mat-cell *matCellDef="let element">
-        <button mat-icon-button color="primary" ><img src="../../assets/edit.png"></button>
+        <button mat-icon-button color="primary" (click)="openEditDialog(element)"><img src="../../assets/edit.png"></button>
         <button mat-icon-button color="warn"(click)="deleteVacation(element._id)"><img src="../../assets/delete.png" alt=""></button>
         </td>
       </ng-container>
