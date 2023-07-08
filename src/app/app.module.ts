@@ -54,7 +54,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HolidayComponent } from './holiday/holiday.component';
 import { HolidayDialogComponent } from './holiday-dialog/holiday-dialog.component';
 import { EmployeeHolidayComponent } from './employee-holiday/employee-holiday.component';
-import { PayrollHistoryComponent } from './payroll-history/payroll-history.component'; // Import MatSnackBarModule
+import { PayrollHistoryComponent } from './payroll-history/payroll-history.component';
+import { EmployeeAddVacationDialogComponent } from './employee-add-vacation-dialog/employee-add-vacation-dialog.component'; // Import MatSnackBarModule
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { PayrollHistoryComponent } from './payroll-history/payroll-history.compo
     HolidayDialogComponent,
     EmployeeHolidayComponent,
     PayrollHistoryComponent,
+    EmployeeAddVacationDialogComponent,
   ],
   imports: [
     BrowserModule,

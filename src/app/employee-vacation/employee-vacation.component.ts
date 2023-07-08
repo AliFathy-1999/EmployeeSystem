@@ -27,20 +27,20 @@ export class EmployeeVacarionComponent {
       currentPageIndex:number=0
       totalPages!:number
       
-      // openDialog(){
-      //   const dialogRef= this._dialog.open(EmployeeDialogComponent);
-      //   dialogRef.afterClosed().subscribe({
-      //    next:(res:any)=>{
-      //    if(res){
-      //      this.getAllEmployeeVacations();
-      //    }
-      //    }
-      //  })
-      //  }
+      openDialog(){
+        const dialogRef= this._dialog.open(EmployeeDialogComponent);
+        dialogRef.afterClosed().subscribe({
+         next:(res:any)=>{
+         if(res){
+           this.getAllEmployeeVacations();
+         }
+         }
+       })
+       }
 
 
        
- displayedColumns: string[] = [ '_id','reasonForVacation','fromDay','toDay','status','action'];
+ displayedColumns: string[] = [ '_id','totalDays','status','action'];
          dataSource = new MatTableDataSource<Vacation>();
          @ViewChild(MatPaginator) paginator!: MatPaginator;
        
