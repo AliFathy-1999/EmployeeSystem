@@ -60,7 +60,7 @@ export class EmployeeNavComponent {
     };
 
     checkifNewMessages(){
-console.log("nen")
+
       interval(4000).subscribe(() => {
         console.log("send")
         this._EmployeeMessages.getUserLastMessage().subscribe((res:any)=>{
