@@ -20,7 +20,7 @@ console.log(token)
       authorization: `Bearer ${token}`,
       'Content-Type': 'application/json'
     });
-    const url = `http://localhost:4000/attendance/getAllAttendances`;
+    const url = `http://localhost:4000/attendance/getAllAttendances?page=${page}&limit=${limit}`;
     return this.http.get<any>(url, { headers });
   }
 }

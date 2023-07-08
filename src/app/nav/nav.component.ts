@@ -13,16 +13,16 @@ import { GlobalService } from '../service/global.service';
 export class NavComponent {
 
 
- 
+
   menuItems: string[] = [];
-  
+
   user: any = this.global.currentUser.getValue();
 
 
   constructor(private breakpointObserver: BreakpointObserver, private global: GlobalService, private router: Router) {
     this.global.saveCurrentUser();
     if (this.user && this.user.role == 'ADMIN') {
-      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements'];
+      this.menuItems = ['dashboard','addEmployee', 'getAllEmployees', 'payroll', 'addVacation','allAttendance','checkinCheckout','Messages','Announcements','employeeAttendance'];
     } else if(this.user && this.user.role == 'USER'){
       this.menuItems = ['me','me/payroll', 'employeeVacation','employeeAttendance'];
     }
