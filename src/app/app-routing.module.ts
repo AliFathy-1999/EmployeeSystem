@@ -21,6 +21,7 @@ import {homeGuard} from './home.guard';
 import  {RoleGuardGuard} from "./role-guard.guard"
 import { AnnouncementComponent } from './announcement/announcement.component';
 import { EmployeeMessagesComponent } from './employee-messages/employee-messages.component';
+import { HolidayComponent } from './holiday/holiday.component';
 // import { EmployeeVacarionComponent } from './employee-vacation/employee-vacation.component';
 const routes: Routes = [
 
@@ -39,7 +40,9 @@ const routes: Routes = [
   {path:'Messages',component:EmployeeMessagesComponent,canActivate: [AuthGuard]},
   {path:'Announcements',component:AnnouncementComponent,canActivate: [AuthGuard]},
   {path:'me',component:EmployeeViewComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
-  {path:'employeeVacation' , component:EmployeeVacarionComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}}
+  {path:'employeeVacation' , component:EmployeeVacarionComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
+  {path:'holiday' , component:HolidayComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}}
+
 ];
 
 @NgModule({

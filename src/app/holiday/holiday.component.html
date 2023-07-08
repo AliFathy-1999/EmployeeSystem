@@ -1,0 +1,53 @@
+<div class="addbtn">
+    <button mat-raised-button class="button-86" style="color: #f0f0f0; padding: 2%; color:#f65d4e" (click)="openDialog()">Add Holiday</button>
+</div>
+<div *ngIf="loading;" class="d-flex mt-5 justify-content-center">
+  <mat-spinner></mat-spinner>
+</div>
+<div class="mat-elevation-z8" *ngIf="!loading;">
+    <table mat-table [dataSource]="dataSource">
+  
+      <ng-container matColumnDef="_id">
+        <th mat-header-cell *matHeaderCellDef> Holiday ID </th>
+        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="holidayName">
+        <th mat-header-cell *matHeaderCellDef> Holiday Name </th>
+        <td mat-cell *matCellDef="let element">{{element.holidayName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="holidayDate">
+        <th mat-header-cell *matHeaderCellDef> Holidday Date </th>
+        <td mat-cell *matCellDef="let element">{{element.holidayDate}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="noOfDays">
+        <th mat-header-cell *matHeaderCellDef> No Of Days </th>
+        <td mat-cell *matCellDef="let element"> {{element?.noOfDays}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary"(click)="openEditDialog(element)"><img class="editBg" src="../../assets/edit.png"
+        ></button>
+        <button mat-icon-button color="warn" (click)="deletePayroll(element._id)">
+       <img width="100%" src="../../assets/delete.png"></button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[10]"  [pageSize]="pageSize" [length]="totalCount" (page)="onPageChanged($event)" style="display: none;"></mat-paginator>
+
+    <button mat-icon-button (click)="onPreviousPage()" [disabled]="currentPageIndex === 1" style="margin-right: 1%;">
+      <img src="../../assets/previous.png">
+      </button>
+   Page {{currentPageIndex}}
+       <button mat-icon-button (click)="onNextPage()" [disabled]="currentPageIndex==totalPages">
+<img src="../../assets/next.png">
+       </button>
+       </div>
