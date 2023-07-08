@@ -68,13 +68,13 @@ export class EmployeeVacarionComponent {
         getAllEmployeeVacations(){
          this._vacation.getAllEmployeeVacations(this.currentPageIndex, this.pageSize).subscribe((res:any)=>{
         //  this.vacations=res.allVacations;
-         this.totalCount=res.vacations.totalCount
-         this.totalPages=res.vacations.totalPages
+        this.totalCount=res.paginationInfo.totalCount
+        this.totalPages=res.paginationInfo.totalPages
         //  this.dataSource=new MatTableDataSource(this.vacations);
          this.dataSource.data = res.vacations;
          this.loading=false;
          console.log(res.vacations);
-         console.log("this.totalCount",res.vacations.totalCount);
+         console.log("this.totalCount",res.paginationInfo.totalCount);
          console.log("this.totalPages",this.totalPages);
 
          console.log("res.allVacations",res.vacations[0].employeeId);
@@ -104,7 +104,7 @@ export class EmployeeVacarionComponent {
           this.pageSize = newPageSize;
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, this.pageSize).subscribe((result) => {
             this.vacations=result.vacations;
-            this.totalCount = result.vacations.totalCount;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
@@ -112,10 +112,10 @@ export class EmployeeVacarionComponent {
       }
       
       onPreviousPage() {
-        if (this.currentPageIndex > 1) {
+        if (this.currentPageIndex > 0) {
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.vacations;
-            this.totalCount = result.vacations;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
@@ -127,7 +127,7 @@ export class EmployeeVacarionComponent {
           this.currentPageIndex++;
           this._vacation.getAllEmployeeVacations(this.currentPageIndex, 10).subscribe((result) => {
             this.vacations = result.vacations;
-            this.totalCount = result.vacations.totalCount;
+            this.totalCount = result.paginationInfo.totalCount;
             this.dataSource = new MatTableDataSource(this.vacations);
             this.dataSource.paginator = this.paginator;
           });
