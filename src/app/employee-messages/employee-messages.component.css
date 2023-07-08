@@ -389,22 +389,17 @@ body {
   font-size: 10px;
 }
 
-.left .top {
-  font-weight: 600;
-  font-size: 25px;
-  color: rgb(72, 72, 145);
+.data{
+  width: 100% ;
+  padding-top: 100px ;
+
 }
 
-@keyframes slideFromLeft {
-  0% {
-    margin-left: -200px;
-    opacity: 0;
-  }
-  100% {
-    margin-left: 0;
-    opacity: 1;
-  }
+.data img {
+
+  width:100%
 }
+
 @-webkit-keyframes slideFromLeft {
   0% {
     margin-left: -200px;
@@ -434,4 +429,4 @@ body {
     margin-right: 0;
     opacity: 1;
   }
-}
+}              
