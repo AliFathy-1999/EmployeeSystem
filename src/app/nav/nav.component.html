@@ -10,15 +10,16 @@
         <fa-icon [icon]="item.icon" class="text-primary menu-icon"></fa-icon>
         {{item.name | titlecase}} </a>
       <a [routerLink]='["/Messages"]' class="notification" (click)='toggleMessageBadgeVisibility()'>
-        <span>MESSAGES</span>
+        <span><fa-icon [icon]="faEnvelope" class="text-primary menu-icon"></fa-icon> MESSAGES</span>
         <span class="badge" *ngIf="messageNotifications"> New</span>
       </a>
-
-      <a [routerLink]='["/Announcements"]' class="notification" (click)='toggleAnnouncementBadgeVisibility()'>
-        <span>ANNOUNCEMENTS</span>
-        <div class="badge" *ngIf="announcementNotifications" >New</div>
-      </a>
-      <a  mat-list-item (click)="logout()">Logout</a>
+      <p>
+        <a [routerLink]='["/Announcements"]' class="notification" (click)='toggleAnnouncementBadgeVisibility()'>
+          <span><fa-icon [icon]="faBullhorn" class="text-primary menu-icon"></fa-icon> ANNOUNCEMENTS</span>
+          <div class="badge" *ngIf="announcementNotifications" >New</div>
+        </a>
+    </p>
+      <a  mat-list-item (click)="logout()"><fa-icon [icon]="faSignOutAlt" class="text-primary menu-icon"></fa-icon> Logout</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

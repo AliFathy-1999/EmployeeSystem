@@ -8,6 +8,7 @@ import { EmployeeMessagesService } from '../service/employee-messages.service';
 import { AnnouncementService } from '../service/announcement.service';
 import { interval } from 'rxjs';
 import { sideBarAdminItems , sideBarUserItems} from './dashboardItems';
+import {faEnvelope, faBullhorn ,faSignOutAlt} from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-nav',
   templateUrl: './nav.component.html',
@@ -20,7 +21,7 @@ export class NavComponent {
   announcementNotifications :boolean = false;
   menuItems: any;
   sideBarItems:any
-
+  faEnvelope = faEnvelope; faBullhorn = faBullhorn;faSignOutAlt=faSignOutAlt;
   user: any = this.global.currentUser.getValue();
 
 

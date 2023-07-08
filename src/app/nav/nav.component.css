@@ -5,7 +5,7 @@
 }
 
 .sidenav {
-  width: 200px;
+  width: 15%;
 }
 
 .sidenav .mat-toolbar {
@@ -44,5 +44,5 @@
 }
 .menu-icon {
   margin-right: 0.5rem;
-  font-size: 1.2rem;
+  font-size: 1.8rem;
 }
