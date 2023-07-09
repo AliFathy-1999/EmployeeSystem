@@ -63,6 +63,8 @@ import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { GetAllCasualVacationsComponent } from './get-all-casual-vacations/get-all-casual-vacations.component';
 import { GetMyCasualVacationsComponent } from './get-my-casual-vacations/get-my-casual-vacations.component';
 import { CasualVacationsComponent } from './casual-vacations/casual-vacations.component';
+import { GetAndApplyForExcuseComponent } from './get-and-apply-for-excuse/get-and-apply-for-excuse.component';
+import { GetAndApplyForExcuseDialogComponent } from './get-and-apply-for-excuse-dialog/get-and-apply-for-excuse-dialog.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +102,9 @@ import { CasualVacationsComponent } from './casual-vacations/casual-vacations.co
     LeaveReportComponent,
     GetAllCasualVacationsComponent,
     GetMyCasualVacationsComponent,
-    CasualVacationsComponent
+    CasualVacationsComponent,
+    GetAndApplyForExcuseComponent,
+    GetAndApplyForExcuseDialogComponent
   ],
   imports: [
     BrowserModule,

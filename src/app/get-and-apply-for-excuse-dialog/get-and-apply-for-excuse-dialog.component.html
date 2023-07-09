@@ -1,0 +1,39 @@
+<div class="dialog">
+
+    <div mat-dialog-title>
+      <h3>Admin Update Excussion Form</h3>
+    </div>
+    <div class="form-wrap">
+      <form [formGroup]="excuseForm" (ngSubmit)="submitData(excuseForm)">
+        <div mat-dialog-content>
+  
+          <div class="row">
+  
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>respond</mat-label>
+                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="respond" name="respond" >
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="excuseForm.get('respond')?.errors != null && excuseForm.get('respond')?.touched">
+                  <p class="text-danger" *ngIf="excuseForm.get('respond')?.errors?.['required']">respond is required!</p>
+                </div>
+                <div alert-danger *ngIf="statusControl.hasError('invalidStatusValue')">
+                     <p class="text-danger">Invalid status value.</p>
+                  </div>
+            </div>
+            </div>
+          
+        </div>
+        </div>
+        <div mat-dialog-action class="action">
+          <button mat-raised-button class="btn btn-sucess btn-block p-3"
+            type="submit">{{data?'Update':'Save'}}</button>
+          <button mat-raised-button class="btn btn-danger btn-block p-3" (click)="closeDialog()"
+            type="button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
