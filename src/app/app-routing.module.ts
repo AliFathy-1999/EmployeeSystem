@@ -34,6 +34,7 @@ import { GetAllCasualVacationsComponent } from './get-all-casual-vacations/get-a
 import { GetMyCasualVacationsComponent } from './get-my-casual-vacations/get-my-casual-vacations.component';
 import { GetAndApplyExcuseByUserComponent } from './get-and-apply-excuse-by-user/get-and-apply-excuse-by-user.component';
 import { VacationReportComponent } from './vacation-report/vacation-report.component';
+import { ProfileComponent } from './employee/profile/profile.component';
 const routes: Routes = [
 
   { path: '', component: SigninComponent,canActivate: [homeGuard]},
@@ -67,6 +68,7 @@ const routes: Routes = [
 
   {path:'getMyExcuses',component:GetAndApplyExcuseByUserComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
   {path:'viewVacation',component:VacationReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+  {path:'my-profile', component:ProfileComponent,canActivate: [AuthGuard]}
 ];
 
 @NgModule({
