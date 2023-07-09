@@ -68,6 +68,7 @@ import { GetAndApplyForExcuseDialogComponent } from './get-and-apply-for-excuse-
 import { GetAndApplyExcuseByUserComponent } from './get-and-apply-excuse-by-user/get-and-apply-excuse-by-user.component';
 import { GetAndApplyExcuseByUserDialogComponent } from './get-and-apply-excuse-by-user-dialog/get-and-apply-excuse-by-user-dialog.component';
 import { VacationReportComponent } from './vacation-report/vacation-report.component';
+import { ProfileComponent } from './employee/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,7 +110,8 @@ import { VacationReportComponent } from './vacation-report/vacation-report.compo
     GetAndApplyForExcuseDialogComponent,
     GetAndApplyExcuseByUserComponent,
     GetAndApplyExcuseByUserDialogComponent,
-    VacationReportComponent
+    VacationReportComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
