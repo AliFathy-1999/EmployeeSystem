@@ -87,5 +87,8 @@ getToken(): string | null {
   getEmployeeDetails(id:any): Observable<any> {
     return this.http.get<any[]>(`${this.api_url}/${id}`);
   }
+  getMe(){
+    return this.http.get<any[]>(`${this.api_url}/user`);
+  }
 }
 
