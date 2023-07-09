@@ -32,6 +32,11 @@ export const sideBarAdminItems = [
     routeName:'addVacation',
     icon:faCalendarPlus
   },
+    {
+    name:'Vacation Report',
+    routeName:'viewVacation',
+    icon:faFileAlt
+  },
   {
     name:'Get Casual Vacations',
     routeName:'getAllCasualVacations',
@@ -92,6 +97,11 @@ export const sideBarUserItems = [
   {
     name:'My Casual Vacations',
     routeName:'getMyCasualVacations',
+    icon:faCalendarPlus
+  },
+  {
+    name:'My Excuses',
+    routeName:'getMyExcuses',
     icon:faCalendarPlus
   },
   {

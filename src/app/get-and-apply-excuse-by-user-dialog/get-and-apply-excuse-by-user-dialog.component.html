@@ -1,0 +1,115 @@
+<div class="dialog">
+
+    <div mat-dialog-title>
+      <h3>User Excuse Form</h3>
+    </div>
+    <div class="form-wrap">
+      <form [formGroup]="excuseForm" (ngSubmit)="submitData(excuseForm)">
+        <div mat-dialog-content>
+  
+          <div class="row">
+  
+  
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>reason</mat-label>
+                  <input matInput style="vertical-align: middle;" type="text" class="form-control" formControlName="reason" name="reason">
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="excuseForm.get('reason')?.errors != null && excuseForm.get('reason')?.touched">
+                  <p class="text-danger" *ngIf="excuseForm.get('reason')?.errors?.['required']">reason is required!</p>
+                </div>
+                <div *ngIf="nameMessage" class="alert mt-3 alert-danger text-center"
+                role="alert">{{nameMessage}}</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field appearance="outline" style=" vertical-align: middle;margin-top: 4%;">
+                  <mat-label>Day</mat-label>
+                  <input matInput type="date"  class="form-control" formControlName="Day" >
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="excuseForm.get('Day')?.errors != null && excuseForm.get('Day')?.touched">
+                  <p class="text-danger" *ngIf="excuseForm.get('Day')?.errors?.['required']">totalDays is required!
+                  </p>
+                  <p class="text-danger" *ngIf="excuseForm.get('Day')?.errors?.['min']">minmum totalDays 0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <!-- <div class="content"> -->
+          <div class="row ">
+            <div class="col-md-6">
+              <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Choose a From time</mat-label>
+                    <input matInput type="time" name="from" formControlName="from">
+                    <mat-hint>HH:MM</mat-hint>
+                  </mat-form-field>
+                <div class="catVal alert-danger"
+                  *ngIf="excuseForm.get('from')?.errors != null && excuseForm.get('fromDay')?.touched">
+                  <p class="text-danger" *ngIf="excuseForm.get('from')?.errors?.['required']">From date is required!
+                  </p>
+                </div>
+                <!-- <div class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+                <div  *ngIf="errors">
+                  <ul>
+                    <li class="text-danger" *ngFor="let error of errors">{{ error }}</li>
+                  </ul>
+                </div> -->
+              </div>
+            </div>
+            <div class="col-md-6">
+  
+              <div class="form-group">
+                <mat-form-field>
+                    <mat-label>Choose a To time</mat-label>
+                    <input matInput type="time"  name="to" formControlName="to">
+                    <mat-hint>HH:MM</mat-hint>
+                  </mat-form-field>
+  
+                <div class="dialogVal alert-danger"
+                  *ngIf="excuseForm.get('to')?.errors != null && excuseForm.get('to')?.touched">
+                  <p class="text-danger" *ngIf="excuseForm.get('to')?.errors?.['required']">To date is required!</p>
+                </div>
+                <!-- <div class="alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+<div  *ngIf="errors">
+  <ul>
+    <li class="text-danger" *ngFor="let error of errors">{{ error }}</li>
+  </ul>
+</div> -->
+              </div>
+            </div>
+            <!-- <div *ngIf="catMessage" class="alert mt-3 alert-danger text-center"
+            role="alert">{{catMessage}}</div> -->
+          </div>
+  
+          <div class="col-md-12" >
+          <div class="form-group" >
+                <mat-form-field appearance="outline" style="width:100%;padding-right:5px; padding-left:5px; padding-top:20px;">
+                  <mat-label>typeOfExcuse</mat-label>
+                  <input matInput type="text"  class="form-control" formControlName="typeOfExcuse" >
+                </mat-form-field>
+                <div class="dialogVal alert-danger"
+                  *ngIf="excuseForm.get('typeOfExcuse')?.errors != null && excuseForm.get('typeOfExcuse')?.touched">
+                  <p class="text-danger" *ngIf="excuseForm.get('typeOfExcuse')?.errors?.['required']">typeOfExcuse is required!
+                  </p>
+                </div>
+                <div alert-danger *ngIf="excuseControl.hasError('invalidExcuseValue')">
+                    <p class="text-danger">Invalid excuse value.</p>
+                 </div>
+              </div>
+        </div>
+        <div mat-dialog-action class="action">
+          <button mat-raised-button class="btn btn-sucess btn-block p-3"
+            type="submit" >{{data?'Update':'Save'}}</button>
+          <button mat-raised-button class="btn btn-danger btn-block p-3" [mat-dialog-close]="false" (click)="closeDialog()"
+            type="button">Cancel</button>
+        </div>
+        </div>
+      </form>
+    </div>
+  </div>

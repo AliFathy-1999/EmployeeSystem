@@ -65,7 +65,9 @@ import { GetMyCasualVacationsComponent } from './get-my-casual-vacations/get-my-
 import { CasualVacationsComponent } from './casual-vacations/casual-vacations.component';
 import { GetAndApplyForExcuseComponent } from './get-and-apply-for-excuse/get-and-apply-for-excuse.component';
 import { GetAndApplyForExcuseDialogComponent } from './get-and-apply-for-excuse-dialog/get-and-apply-for-excuse-dialog.component';
-
+import { GetAndApplyExcuseByUserComponent } from './get-and-apply-excuse-by-user/get-and-apply-excuse-by-user.component';
+import { GetAndApplyExcuseByUserDialogComponent } from './get-and-apply-excuse-by-user-dialog/get-and-apply-excuse-by-user-dialog.component';
+import { VacationReportComponent } from './vacation-report/vacation-report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -104,7 +106,10 @@ import { GetAndApplyForExcuseDialogComponent } from './get-and-apply-for-excuse-
     GetMyCasualVacationsComponent,
     CasualVacationsComponent,
     GetAndApplyForExcuseComponent,
-    GetAndApplyForExcuseDialogComponent
+    GetAndApplyForExcuseDialogComponent,
+    GetAndApplyExcuseByUserComponent,
+    GetAndApplyExcuseByUserDialogComponent,
+    VacationReportComponent
   ],
   imports: [
     BrowserModule,

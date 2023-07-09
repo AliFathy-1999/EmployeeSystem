@@ -32,6 +32,8 @@ import { DepartmentDetailsComponent } from './departments/department-details/dep
 import { LeaveReportComponent } from './leave-report/leave-report.component';
 import { GetAllCasualVacationsComponent } from './get-all-casual-vacations/get-all-casual-vacations.component';
 import { GetMyCasualVacationsComponent } from './get-my-casual-vacations/get-my-casual-vacations.component';
+import { GetAndApplyExcuseByUserComponent } from './get-and-apply-excuse-by-user/get-and-apply-excuse-by-user.component';
+import { VacationReportComponent } from './vacation-report/vacation-report.component';
 const routes: Routes = [
 
   { path: '', component: SigninComponent,canActivate: [homeGuard]},
@@ -61,7 +63,10 @@ const routes: Routes = [
   {path:'leaveReport' , component:LeaveReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   {path:'getAllCasualVacations',component:GetAllCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   {path:'getMyCasualVacations',component:GetMyCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
-  {path:'getAllExcuses',component:GetAndApplyForExcuseComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}}
+  {path:'getAllExcuses',component:GetAndApplyForExcuseComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
+
+  {path:'getMyExcuses',component:GetAndApplyExcuseByUserComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
+  {path:'viewVacation',component:VacationReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
 ];
 
 @NgModule({
