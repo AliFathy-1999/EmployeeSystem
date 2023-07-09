@@ -100,9 +100,7 @@ export class EmployeeMessagesComponent implements OnInit {
       }
     );
 
-    this.sentMessage.setValue({
-      message:""
-    })
+    this.sentMessage.controls['newMessage'].setValue(null);
   }
 
   getEmpData(id: string) {

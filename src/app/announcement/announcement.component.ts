@@ -54,10 +54,8 @@ constructor(private _announcements:AnnouncementService,private formBuilder: Form
          console.log(err)
       })
 
-      this.newAnnouncement.setValue({
-        newMessage: '',
-        title: ''
-      });
+      this.newAnnouncement.controls['newMessage'].setValue(null);
+      this.newAnnouncement.controls['title'].setValue(null);
   }
 
   ngOnInit() {
@@ -67,7 +65,7 @@ constructor(private _announcements:AnnouncementService,private formBuilder: Form
           null,
           Validators.compose([
             Validators.required,
-            Validators.minLength(1),
+            Validators.minLength(5),
             Validators.maxLength(300),
             this.notOnlyWhitespace,
           ]),
@@ -76,7 +74,7 @@ constructor(private _announcements:AnnouncementService,private formBuilder: Form
           null,
           Validators.compose([
             Validators.required,
-            Validators.minLength(1),
+            Validators.minLength(5),
             Validators.maxLength(300),
             this.notOnlyWhitespace,
           ]),
