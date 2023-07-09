@@ -37,10 +37,12 @@ export class GetAndApplyExcuseByUserDialogComponent {
     
       this.excuseForm = new FormGroup({
         reason: new FormControl(null, [Validators.required]),
-        Day: new FormControl( new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10), [Validators.required]),
-        from: new FormControl(new Date().toLocaleTimeString(), [Validators.required]),
-        to: new FormControl(new Date().toLocaleTimeString(), [Validators.required]),
-        typeOfExcuse: this.excuseControl      
+
+        from: new FormControl(new Date().toISOString().substring(0, 19) + "+00:00", [Validators.required]),
+        to: new FormControl(new Date(Date.now() + 60 * 60 * 1000).toISOString().substring(0, 19) + "+00:00", [Validators.required]),
+      
+         
+        typeOfExcuse: this.excuseControl     
       });
 
       
@@ -56,7 +58,14 @@ export class GetAndApplyExcuseByUserDialogComponent {
     }
     
     ngOnInit(): void {
-      this.excuseForm.patchValue(this.data);
+      if (this.data) { 
+        this.excuseForm.patchValue({
+          reason: this.data.reason, 
+          from: this.data.from,
+          to: this.data.to,
+
+        });
+      }
     }
     
 
