@@ -38,6 +38,11 @@ export const sideBarAdminItems = [
     icon:faCalendarDay
   },
   {
+    name:'Get Excuses',
+    routeName:'getAllExcuses',
+    icon:faCalendarDay
+  },
+  {
     name:'Attendance',
     routeName:'allAttendance',
     icon:faClipboardList

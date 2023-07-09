@@ -1,3 +1,4 @@
+import { GetAndApplyForExcuseComponent } from './get-and-apply-for-excuse/get-and-apply-for-excuse.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashComponent } from './dash/dash.component';
@@ -59,7 +60,8 @@ const routes: Routes = [
   {path: 'departmentDetails/:id', component:DepartmentDetailsComponent},
   {path:'leaveReport' , component:LeaveReportComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
   {path:'getAllCasualVacations',component:GetAllCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}},
-  {path:'getMyCasualVacations',component:GetMyCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}}
+  {path:'getMyCasualVacations',component:GetMyCasualVacationsComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['USER']}},
+  {path:'getAllExcuses',component:GetAndApplyForExcuseComponent,canActivate: [AuthGuard,RoleGuardGuard],data: { allowedRoles: ['ADMIN']}}
 ];
 
 @NgModule({
